@@ -3,9 +3,7 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 
 import Landing from './pages/landing/Landing'
-import Menu from './pages/menu/Menu'
-import Desayunos from './pages/menu/Desayunos'
-import Postres from './pages/menu/Postres'
+import Login from './pages/login/Login'
 
 function App() {
 
@@ -13,10 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Landing/>}/>
-
-        <Route path='/menu' element={<Menu/>}/>
-        <Route path='/menu/desayunos' element={<Desayunos/>}/>
-        <Route path='/menu/postres' element={<Postres/>}/>
+        <Route path='/login' element={<Login/>}/>
 
       </Routes>
     </BrowserRouter>

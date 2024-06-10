@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from '../../components/Navbar'
+import Navigation from '../../components/Navbar'
 
 function Landing() {
   return (
     <>
-        <Navbar/>
+      <Navigation/>
     </>
   )
 }
