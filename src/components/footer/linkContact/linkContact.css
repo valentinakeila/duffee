@@ -1,19 +1,20 @@
-.link-container {
+.linkC-container {
+  margin-top: 7px;
   display: flex;
   text-decoration: none;
   color: white;
-  font-size: 17px;
+  font-size: 20px;
 }
 
-.link-container:hover {
+.linkC-container:hover {
   color: dodgerblue;
 }
 
 i {
-  font-size: 20px;
-  margin-top: 4px;
+  font-size: 23px;
+  margin-top: 5px;
 }
 
 p {
-  margin-left: 7px;
+  margin-left: 8px;
 }
