@@ -1,12 +1,13 @@
-import React from 'react'
-import Navigation from '../../components/Navbar'
+import Navigation from "../../components/Navbar";
+import Footer from "../../components/footer/Footer";
 
 function Landing() {
   return (
     <>
-      <Navigation/>
+      <Navigation />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default Landing
+export default Landing;
