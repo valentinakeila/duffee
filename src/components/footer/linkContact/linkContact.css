@@ -1,0 +1,19 @@
+.link-container {
+  display: flex;
+  text-decoration: none;
+  color: white;
+  font-size: 17px;
+}
+
+.link-container:hover {
+  color: dodgerblue;
+}
+
+i {
+  font-size: 20px;
+  margin-top: 4px;
+}
+
+p {
+  margin-left: 7px;
+}
