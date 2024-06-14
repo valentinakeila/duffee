@@ -5,22 +5,21 @@ import logo from "../assets/duffee-logo.png"
 
 function Navigation() {
   return (
-    <>
-      
-      <nav style={{width:"100%", height:"8vh", backgroundColor:"black",display:"flex",alignItems:"center"}}>
-        <div style={{width:"45%", height:"100%", backgroundColor:"black",display:"flex",justifyContent:"flex-start",alignItems:"center",paddingLeft:"10%",paddingRight:"10%"}}>
-          <a href="" style={{textDecoration:"none",color:"white"}}>• Nuestra Carta</a>
+   
+<nav class="d-flex bg-dark text-light" style={{height:"5rem"}}>
+        <div class="col-5 d-flex align-items-center ps-5">
+        Nuestra Carta
         </div>
-        <div style={{width:"55%", height:"100%", backgroundColor:"black",display:"flex",justifyContent:"flex-start",alignItems:"center", gap:"20%"}}>
-          <img src={logo} href="" alt="" srcset="" style={{width:"5rem",alignSelf:"center",position:"relative",marginTop:"1.4rem"}} />
-          <a href="" style={{textDecoration:"none",color:"white"}}>• Quienes somos</a>
-          <a href="" style={{textDecoration:"none",color:"white"}}>• Login</a>
+        <div class="col">
+        <img src={logo} href="" alt="" srcset="" class="z-3" style={{width:"5rem",alignSelf:"center",position:"absolute",marginTop:"1.4rem"}} />
         </div>
-        
-        
+        <div class="col d-flex align-items-center ps-5 justify-content-end">
+        Quienes Somos
+        </div>
+        <div class="col d-flex align-items-center pe-5 justify-content-end">
+        Login
+        </div>
       </nav>
-      
-    </>
   );
 }
 
