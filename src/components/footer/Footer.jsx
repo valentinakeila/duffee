@@ -4,7 +4,7 @@ import LinkIcon from "./linkIcon/LinkIcon";
 
 const Footer = () => {
   return (
-    <div className="footer-page">
+    <div className="footer-page  bg-dark">
       <div className="footer-links">
         <div className="footer-links-1">
           <LinkContact
