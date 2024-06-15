@@ -1,9 +1,9 @@
-import "./linkIcon.css";
-
-const LinkIcon = ({ icon, url }) => {
+const LinkIcon = ({ icon, url, hoverMesagge }) => {
   return (
-    <a className="linkI-container" href={url}>
-      <i className={icon}></i>
+    <a className="d-flex" target="_blank" title={hoverMesagge} href={url}>
+      <div className="bg-light text-black link-primary px-2 py-1 rounded-circle" style={{fontSize: "22px"}}>
+        <i className={icon}></i>
+      </div>
     </a>
   );
 };
