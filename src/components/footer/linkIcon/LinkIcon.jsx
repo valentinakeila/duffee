@@ -1,8 +1,6 @@
-import "./linkIcon.css";
-
 const LinkIcon = ({ icon, url }) => {
   return (
-    <a className="linkI-container" href={url}>
+    <a href={url}>
       <i className={icon}></i>
     </a>
   );
