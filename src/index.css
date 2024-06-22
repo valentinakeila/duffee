@@ -1,4 +1,8 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
 
 body {
-  margin: 0;
+  margin: 0 0 110px 0;
 }

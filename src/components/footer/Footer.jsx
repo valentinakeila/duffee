@@ -9,7 +9,7 @@ const Footer = () => {
   const whatsappPageUrl = "https://www.whatsapp.com/";
 
   return (
-    <div className="bg-black d-flex-column" style={{height: "110px"}}>
+    <div className="bg-black d-flex-column w-100 position-absolute bottom-0" style={{height: "110px"}}>
       <div className="d-flex gap-5 justify-content-center h-75 align-items-end">
         <div className="d-flex gap-5 w-25">
           <LinkContact
