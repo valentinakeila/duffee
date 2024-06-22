@@ -1,13 +1,14 @@
 import { RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import Landing from './pages/landing/Landing'
-import Login from './pages/login/Login'
+import LoginPage from './pages/login/LoginPage';
+
 
 function App() {
 
   const router = createBrowserRouter([
     { path: "/", element: <Landing /> },
-    { path: "/login", element: <Login /> },
+    { path: "/login", element: <LoginPage /> },
     //more pages...
     //{ path: "*", element: <PageNotFound/> }
   ]);
