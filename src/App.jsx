@@ -1,20 +1,19 @@
-import { useState } from 'react'
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import Landing from './pages/landing/Landing'
 import Login from './pages/login/Login'
 
 function App() {
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Landing/>}/>
-        <Route path='/login' element={<Login/>}/>
+  const router = createBrowserRouter([
+    { path: "/", element: <Landing /> },
+    { path: "/login", element: <Login /> },
+    //more pages...
+    //{ path: "*", element: <PageNotFound/> }
+  ]);
 
-      </Routes>
-    </BrowserRouter>
-  )
+  return <RouterProvider router={router} />
+
 }
 
 export default App
