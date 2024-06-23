@@ -12,9 +12,21 @@ function EditForm({ showEditForm, setShowEditForm, menuCategories, setMenuCatego
     setImageUrl(e.target.value);
   }
 
+  const deleteHandler = (e) => {
 
+    e.preventDefault()
 
-  const cancelHandler = () => {
+    if(confirm("Borrar categoria?")){
+      const filteredCategories = menuCategories.filter(category => category.id !== editId);
+      setMenuCategories(filteredCategories);
+
+      setShowEditForm(false)
+    }
+    
+  }
+
+  const cancelHandler = (e) => {
+    e.preventDefault()
     setShowEditForm(false)
   }
 
@@ -67,9 +79,18 @@ function EditForm({ showEditForm, setShowEditForm, menuCategories, setMenuCatego
             <input className='border' type="text" value={imageUrl} style={{ width: "100%", height: "20%", color: "#CAB4FF", padding: "8px",fontSize: "1.2rem",letterSpacing:"0.5px",fontWeight:"100" }} placeholder='URL IMAGEN' onChange={imageHandler} />
           </div>
 
-          <div className='d-flex justify-content-end p-2 gap-4' style={{ width: "100%", height: "15%" }}>
-            <button className='border-0 text-white rounded fw-bolder' style={{ fontSize: "1.4rem", backgroundColor: "#FF7474" }} onClick={cancelHandler} >CANCELAR</button>
-            <button type='submit' className='border-0 text-white rounded fw-bolder' style={{ fontSize: "1.4rem", backgroundColor: "#54D496" }} onClick={submitHandler}>HECHO</button>
+          <div className='d-flex p-2 gap-4 justify-content-between' style={{ width: "100%", height: "15%" }}>
+          
+          
+          <div className='d-flex w-50 h-100  '>
+          <button className='border-0 text-white rounded fw-bolder' style={{ fontSize: "1.4rem", backgroundColor: "#FF7474" }} onClick={deleteHandler}>BORRAR</button>
+          </div>
+          <div className='d-flex w-50 h-100 justify-content-end gap-2 '>
+          <button className='border-0 text-white rounded fw-bolder' style={{ fontSize: "1.4rem", backgroundColor: "#FF7474" }} onClick={cancelHandler} >CANCELAR</button>
+          <button type='submit' className='border-0 text-white rounded fw-bolder' style={{ fontSize: "1.4rem", backgroundColor: "#54D496" }} onClick={submitHandler}>HECHO</button>
+          </div>
+           
+            
           </div>
 
         </form>
