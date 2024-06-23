@@ -16,7 +16,7 @@ function MenuAdmin({menuCategories,setMenuCategories}) {
   return (
     <>
         <Navigation/>
-        <AddCategory setShowCreateForm={setShowCreateForm}/>
+        <AddCategory setShowCreateForm={setShowCreateForm} showEditForm={showEditForm}/>
 
         {showCreateForm === true ? (<AddCategoryForm menuCategories={menuCategories} setMenuCategories={setMenuCategories} showCreateForm={showCreateForm} setShowCreateForm={setShowCreateForm}/>) : ("")}
 

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 
-function AddCategory({setShowCreateForm}) {
+function AddCategory({setShowCreateForm,showEditForm}) {
 
   const handleClick = () => {
-    setShowCreateForm(true)
+    if(showEditForm != true){
+      setShowCreateForm(true)
+    }
   }
 
   return (
