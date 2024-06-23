@@ -48,7 +48,7 @@ const LoginForm = ({ onLogin }) => {
     setUserEmail("");
     setUserPassword("");
     onLogin();
-    navigate("/");
+    navigate("/rutaadmin");
   };
 
   return (
