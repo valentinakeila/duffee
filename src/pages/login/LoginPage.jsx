@@ -3,12 +3,12 @@ import Navigation from '../../components/navbar/Navbar';
 import LoginForm from './LoginForm';
 
 
-function LoginPage() {
+function LoginPage({ onLogin }) {
 
   return (
     <div>
         <Navigation />
-        <LoginForm />
+        <LoginForm onLogin={onLogin}/>
         <Footer />
     </div>
   )
