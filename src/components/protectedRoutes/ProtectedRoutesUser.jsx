@@ -8,7 +8,7 @@ const ProtectedRoutesUser = ({ isSignedIn, isAdmin }) => {
     //si está logueado y es Admin, lo redirige a la seccion para Admin
   if (isAdmin) {
     //asociar el Navigate to= con el nombre de ruta correspondiente
-    return <Navigate to="/rutaadmin" replace />;
+    return <Navigate to="/menuAdmin" replace />;
   }
 
   //Si está logueado y no es Admin retorna el Outlet y lo deja navegar por la sección de User

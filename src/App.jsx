@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import { RouterProvider, createBrowserRouter} from 'react-router-dom';
 
-import Landing from './pages/landing/Landing'
+import Landing from './pages/landing/Landing';
 import LoginPage from './pages/login/LoginPage';
 import Menu from './pages/menu/Menu';
+import PageNotFound from './components/pageNotFound/PageNotFound';
+import ProtectedRoutesUser from './components/protectedRoutes/ProtectedRoutesUser';
 
-import MenuAdmin from "./pages/menuAdmin/MenuAdmin"
-import { useState } from 'react';
+import MenuAdmin from "./pages/menuAdmin/MenuAdmin";
+import ProtectedRoutesAdmin from './components/protectedRoutes/ProtectedRoutesAdmin';
+
 
 function App() {
 
@@ -43,18 +47,52 @@ function App() {
     }
   ])
 
-  const router = createBrowserRouter([
-    { path: "/", element: <Landing /> },
-    { path: "/login", element: <LoginPage /> },
-    { path: "/menu", element: <Menu menuCategories={menuCategories}/> },
-    //more pages...
-    //{ path: "*", element: <PageNotFound/> }
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log(isLoggedIn);
+  const [isAdmin, setIsAdmin] = useState(false);
+  console.log(isAdmin);
 
-    { path: "/menuAdmin", element: <MenuAdmin menuCategories={menuCategories}  setMenuCategories={setMenuCategories}/> },
+  const loginHandler = () => {
+    //seguramente tengamos que modificar este if para que cambie el estado
+    //sólo si el usuario existe en la base de datos y el response retorna un 200
+    if (!isLoggedIn) {
+      setIsLoggedIn(true);
+    }
+
+    /*
+      Aquí va un if... para cuando nos llega la response poder validar si el usuario
+      logueado es Admin o no, para así poder setear a true el estado de isAdmin si
+      es necesario   
+    */
+  };
+
+  const router = createBrowserRouter([
+    //rutas públicas
+    { path: "/", element: <Landing /> },
+    { path: "/login", element: <LoginPage onLogin={loginHandler}/> },
+    { path: "*", element: <PageNotFound/> },
+    //rutas privadas...
+    { path: "/menu", element: <ProtectedRoutesUser isSignedIn={isLoggedIn} isAdmin={isAdmin}/>,
+      children: [
+        {
+          //hacer coincidir esta ruta con la del componente ProtectedRoutesUser
+          path: "/menu", element: <Menu menuCategories={menuCategories}/>
+        },
+        //Agregar aquí las rutas anidadas de User
+      ]    
+    },
+    { path: "/menuAdmin", element: <ProtectedRoutesAdmin isSignedIn={isLoggedIn} isAdmin={isAdmin}/>,
+      children: [
+        {
+          //hacer coincidir esta ruta con la del componente ProtectedRoutesAdmin
+          path: "/menuAdmin", element: <MenuAdmin menuCategories={menuCategories} setMenuCategories={setMenuCategories}/>
+        },
+        //agregar aquí las rutas anidadas de Admin
+      ]
+    },
   ]);
 
   return <RouterProvider router={router} />
-
 }
 
 export default App
