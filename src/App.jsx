@@ -13,6 +13,30 @@ import ProtectedRoutesAdmin from './components/protectedRoutes/ProtectedRoutesAd
 
 function App() {
 
+  const initialUsers = [
+    {
+      id: 1,
+      name: "Manuel Cecarelli",
+      email: "manuelcecarelli@gmail.com",
+      password: "manu123",
+      adminRole: true
+    },
+    {
+      id: 2,
+      name: "Nicolas Cataldi",
+      email: "nicolascataldi@gmail.com",
+      password: "nico123",
+      adminRole: false
+    },
+    {
+      id: 3,
+      name: "Valentina Garrido",
+      email: "valentinagarrido@gmail.com",
+      password: "valen123",
+      adminRole: false
+    }
+  ]
+
   const [menuCategories,setMenuCategories] = useState([
     {
       name:"Desayunos",
@@ -45,25 +69,33 @@ function App() {
       imageUrl:"https://i.ytimg.com/vi/XCENOkjqI8c/maxresdefault.jpg",
       id:Math.random().toString(36).substr(2, 9)
     }
-  ])
+  ]);
+  const [usersStored, setUsersArray] = useState(initialUsers);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log(isLoggedIn);
   const [isAdmin, setIsAdmin] = useState(false);
-  console.log(isAdmin);
 
-  const loginHandler = () => {
-    //seguramente tengamos que modificar este if para que cambie el estado
-    //sólo si el usuario existe en la base de datos y el response retorna un 200
-    if (!isLoggedIn) {
-      setIsLoggedIn(true);
+  const loginHandler = (email, password) => {
+
+    const auxUser = usersStored.find(user => user.email == email);
+    console.log(auxUser);
+
+    if (auxUser) {
+      if (auxUser.password == password) {
+        setIsLoggedIn(true);
+        if (auxUser.adminRole) {
+          setIsAdmin(true);
+        }
+        return true;
+      }    
+    } else {
+      return false;
     }
+  };
 
-    /*
-      Aquí va un if... para cuando nos llega la response poder validar si el usuario
-      logueado es Admin o no, para así poder setear a true el estado de isAdmin si
-      es necesario   
-    */
+  const logOut = () => {
+    setIsLoggedIn(false);
+    setIsAdmin(false);
   };
 
   const router = createBrowserRouter([
