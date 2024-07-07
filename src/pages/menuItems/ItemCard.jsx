@@ -1,10 +1,12 @@
 import React from 'react';
 import './cardInfo.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ItemCard({ item }) {
 
     const clickHandler = () => {
-        // se agrega el item al carrito
+        toast.success('Se agregó al pedido!')
     };
 
     const encodedUrl = encodeURI(item.imageUrl); // la imagen no se ve sino XD
@@ -13,7 +15,6 @@ function ItemCard({ item }) {
 
     return (
         <div
-            onClick={clickHandler}
             className="card-border col-3 bg-dark text-white m-2 d-flex mb-5 p-0 flex-column"
             style={{
                 height: "19rem",
@@ -23,6 +24,8 @@ function ItemCard({ item }) {
                 backgroundPosition: 'center',
             }}
         >
+            <ToastContainer style={{marginTop:"4rem"}} position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" transition: Bounce/>
+
             <div className='w-100 h-50 d-flex justify-content-end'>
                 <span className='p-3 display-6 fst-italic fw-bolder' style={{ backgroundColor: "#FFC091", height: "fit-content", borderBottomLeftRadius: "20px" }}>{item.name}</span>
             </div>

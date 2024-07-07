@@ -9,13 +9,15 @@ function ItemList({items,name}) {
             <span className='text-center mt-5 display-5 font-italic' style={{width:"18%",color:"#dd8541", fontStyle: "italic", fontWeight:"normal"}}>{name}</span>
             <div style={{width:"41%",borderBottom:"3px solid #dd8541",marginBottom:"1.4rem"}}></div>
         </div>
-      <div className="row mb-3 w-100 justify-content-center mt-5" style={{gap:"5%"}}>
+        {items.length > 0 ? (<div className="row mb-3 w-100 justify-content-center mt-5" style={{gap:"5%"}}>
         {items.map((item) => (
             <ItemCard item={item} key={item.id}/>
         ))}
-      </div>
+      </div>) : (<span className='text-center mt-5 display-4 font-italic' style={{width:"100%",color:"#dd8541", fontStyle: "italic", fontWeight:"normal"}}>No hay items en esta categoria</span>)}
+      
     </div>
   )
 }
 
 export default ItemList
+
