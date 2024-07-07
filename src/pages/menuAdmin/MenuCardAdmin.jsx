@@ -1,4 +1,6 @@
 import React from 'react'
+import "./cardBorder.css"
+import { useNavigate } from 'react-router-dom';
 
 function MenuCardAdmin({category,setShowEditForm,editId,setEditId}) {
 
@@ -7,8 +9,21 @@ function MenuCardAdmin({category,setShowEditForm,editId,setEditId}) {
     setShowEditForm(true)
   }
 
+  const navigate = useNavigate();
+
+  const clickHandler = () => {
+    navigate(`/menu/${category.id}`, {
+      state: {
+        category: {
+          name: category.name,
+          items: category.items
+        }
+      }
+    });
+  };
+
   return (
-    <div className="col-3 bg-dark text-white m-2 d-flex flex-column mb-5 align-items-end justify-content-between"
+    <div onClick={clickHandler} className="card-border col-3 bg-dark text-white m-2 d-flex flex-column mb-5 align-items-end justify-content-between"
             style={{
               height: "19rem", // Para hacer responsive cambiar esto :)
               width: "30rem",   // Para hacer responsive cambiar esto :)

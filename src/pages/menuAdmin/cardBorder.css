@@ -1,0 +1,21 @@
+@keyframes border-celeste-azul-logo {
+    0% {border: solid #FFC091 5px;}
+    50% {border: solid #b76e35 5px;}
+    100% {border: solid #FFC091 5px;}
+}
+
+@keyframes border-celeste-azul-fade {
+    0% {border: solid #b76e35 5px;}
+    50% {border: solid #FFC091 5px;}
+    100% {border: solid #FFF 5px;}
+}
+
+
+
+.card-border{
+    animation:border-celeste-azul-logo 1.2s infinite;
+}
+
+.card-border:not(:hover){
+    animation:border-celeste-azul-fade 1.2s forwards;
+}
