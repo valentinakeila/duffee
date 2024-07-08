@@ -13,6 +13,7 @@ function AppCarousel() {
           className="d-block w-100"
           src={carousel1}
           alt="First slide"
+          style={{ maxHeight: '80vh', objectFit: 'cover' }}
         />
       </Carousel.Item>
       <Carousel.Item>
@@ -20,6 +21,7 @@ function AppCarousel() {
           className="d-block w-100"
           src={carousel2}
           alt="Second slide"
+          style={{ maxHeight: '80vh', objectFit: 'cover' }}
         />
       </Carousel.Item>
       <Carousel.Item>
@@ -27,6 +29,7 @@ function AppCarousel() {
           className="d-block w-100"
           src={carousel3}
           alt="Third slide"
+          style={{ maxHeight: '80vh', objectFit: 'cover' }}
         />
       </Carousel.Item>
     </Carousel>

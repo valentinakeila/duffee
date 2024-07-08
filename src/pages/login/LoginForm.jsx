@@ -42,13 +42,16 @@ const LoginForm = ({ onLogin }) => {
       return;
     }
 
-    // alert(
-    //   `El email ingresado es ${userEmail}, y el password ingresado es ${userPassword}`
-    // );
     setUserEmail("");
     setUserPassword("");
-    onLogin();
-    navigate("/");
+
+    const loginFlag = onLogin(userEmail, userPassword);
+
+    if (loginFlag) {
+      navigate("/menuAdmin");
+    } else {
+      alert("Alguno de los datos ingresados no es correcto.")
+    }
   };
 
   return (

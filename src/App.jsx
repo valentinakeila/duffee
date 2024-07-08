@@ -1,17 +1,47 @@
+import { useState } from 'react';
 import { RouterProvider, createBrowserRouter} from 'react-router-dom';
 
-import Landing from './pages/landing/Landing'
+import Landing from './pages/landing/Landing';
 import LoginPage from './pages/login/LoginPage';
 import Menu from './pages/menu/Menu';
+
 import MenuItems from './pages/menuItems/MenuItems';
 
 import MenuAdmin from "./pages/menuAdmin/MenuAdmin"
-import { useState } from 'react';
 import MenuItemsAdmin from './pages/menuItemsAdmin/MenuItemsAdmin';
 
 //hola
+import PageNotFound from './components/pageNotFound/PageNotFound';
+import ProtectedRoutesUser from './components/protectedRoutes/ProtectedRoutesUser';
+import ProtectedRoutesAdmin from './components/protectedRoutes/ProtectedRoutesAdmin';
+
+
 
 function App() {
+
+  const initialUsers = [
+    {
+      id: 1,
+      name: "Manuel Cecarelli",
+      email: "manuelcecarelli@gmail.com",
+      password: "manu123",
+      adminRole: true
+    },
+    {
+      id: 2,
+      name: "Nicolas Cataldi",
+      email: "nicolascataldi@gmail.com",
+      password: "nico123",
+      adminRole: false
+    },
+    {
+      id: 3,
+      name: "Valentina Garrido",
+      email: "valentinagarrido@gmail.com",
+      password: "valen123",
+      adminRole: false
+    }
+  ]
 
   const [menuCategories,setMenuCategories] = useState([
     {
@@ -69,22 +99,64 @@ function App() {
       id:Math.random().toString(36).substr(2, 9),
       items: []
     }
-  ])
+  ]);
+  const [usersStored, setUsersArray] = useState(initialUsers);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const loginHandler = (email, password) => {
+
+    const auxUser = usersStored.find(user => user.email == email);
+    console.log(auxUser);
+
+    if (auxUser) {
+      if (auxUser.password == password) {
+        setIsLoggedIn(true);
+        if (auxUser.adminRole) {
+          setIsAdmin(true);
+        }
+        return true;
+      }    
+    } else {
+      return false;
+    }
+  };
+
+  const logOut = () => {
+    setIsLoggedIn(false);
+    setIsAdmin(false);
+  };
 
   const router = createBrowserRouter([
+    //rutas públicas
     { path: "/", element: <Landing /> },
-    { path: "/login", element: <LoginPage /> },
-    { path: "/menu", element: <Menu menuCategories={menuCategories}/> },
-    { path: "/menu/:id", element: <MenuItems menuCategories={menuCategories}/> },
-    //more pages...
-    //{ path: "*", element: <PageNotFound/> }
-
-    { path: "/menuAdmin", element: <MenuAdmin menuCategories={menuCategories}  setMenuCategories={setMenuCategories}/> },
-    { path: "/menuAdmin/:id", element: <MenuItemsAdmin menuCategories={menuCategories}  setMenuCategories={setMenuCategories}/> },
+    { path: "/login", element: <LoginPage onLogin={loginHandler}/> },
+    { path: "*", element: <PageNotFound/> },
+    //rutas privadas...
+    { path: "/menu", element: <ProtectedRoutesUser isSignedIn={isLoggedIn} isAdmin={isAdmin}/>,
+      children: [
+        {
+          //hacer coincidir esta ruta con la del componente ProtectedRoutesUser
+          path: "/menu", element: <Menu menuCategories={menuCategories}/>
+        },
+        //Agregar aquí las rutas anidadas de User
+        { path: "/menu/:id", element: <MenuItems menuCategories={menuCategories}/> }
+      ]    
+    },
+    { path: "/menuAdmin", element: <ProtectedRoutesAdmin isSignedIn={isLoggedIn} isAdmin={isAdmin}/>,
+      children: [
+        {
+          //hacer coincidir esta ruta con la del componente ProtectedRoutesAdmin
+          path: "/menuAdmin", element: <MenuAdmin menuCategories={menuCategories} setMenuCategories={setMenuCategories}/>
+        },
+        //agregar aquí las rutas anidadas de Admin
+          { path: "/menuAdmin/:id", element: <MenuItemsAdmin menuCategories={menuCategories}  setMenuCategories={setMenuCategories}/> }
+      ]
+    },
   ]);
 
   return <RouterProvider router={router} />
-
 }
 
 export default App
