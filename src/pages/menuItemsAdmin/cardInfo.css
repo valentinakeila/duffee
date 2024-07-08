@@ -1,0 +1,8 @@
+.card-hover-content {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.card-border:hover .card-hover-content {
+    opacity: 1;
+}
