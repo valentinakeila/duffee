@@ -3,16 +3,14 @@ import Navigation from '../../components/navbar/Navbar';
 import LoginForm from './LoginForm';
 
 
-function LoginPage({ onLogin }) {
-
+function LoginPage() {
   return (
     <div>
         <Navigation />
-        <LoginForm onLogin={onLogin}/>
+        <LoginForm />
         <Footer />
     </div>
   )
-
 }
 
 export default LoginPage;

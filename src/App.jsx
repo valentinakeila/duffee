@@ -10,38 +10,11 @@ import MenuItems from './pages/menuItems/MenuItems';
 import MenuAdmin from "./pages/menuAdmin/MenuAdmin"
 import MenuItemsAdmin from './pages/menuItemsAdmin/MenuItemsAdmin';
 
-//hola
 import PageNotFound from './components/pageNotFound/PageNotFound';
 import ProtectedRoutesUser from './components/protectedRoutes/ProtectedRoutesUser';
 import ProtectedRoutesAdmin from './components/protectedRoutes/ProtectedRoutesAdmin';
 
-
-
 function App() {
-
-  const initialUsers = [
-    {
-      id: 1,
-      name: "Manuel Cecarelli",
-      email: "manuelcecarelli@gmail.com",
-      password: "manu123",
-      adminRole: true
-    },
-    {
-      id: 2,
-      name: "Nicolas Cataldi",
-      email: "nicolascataldi@gmail.com",
-      password: "nico123",
-      adminRole: false
-    },
-    {
-      id: 3,
-      name: "Valentina Garrido",
-      email: "valentinagarrido@gmail.com",
-      password: "valen123",
-      adminRole: false
-    }
-  ]
 
   const [menuCategories,setMenuCategories] = useState([
     {
@@ -100,41 +73,14 @@ function App() {
       items: []
     }
   ]);
-  const [usersStored, setUsersArray] = useState(initialUsers);
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  const loginHandler = (email, password) => {
-
-    const auxUser = usersStored.find(user => user.email == email);
-    console.log(auxUser);
-
-    if (auxUser) {
-      if (auxUser.password == password) {
-        setIsLoggedIn(true);
-        if (auxUser.adminRole) {
-          setIsAdmin(true);
-        }
-        return true;
-      }    
-    } else {
-      return false;
-    }
-  };
-
-  const logOut = () => {
-    setIsLoggedIn(false);
-    setIsAdmin(false);
-  };
 
   const router = createBrowserRouter([
     //rutas públicas
     { path: "/", element: <Landing /> },
-    { path: "/login", element: <LoginPage onLogin={loginHandler}/> },
+    { path: "/login", element: <LoginPage /> },
     { path: "*", element: <PageNotFound/> },
     //rutas privadas...
-    { path: "/menu", element: <ProtectedRoutesUser isSignedIn={isLoggedIn} isAdmin={isAdmin}/>,
+    { path: "/menu", element: <ProtectedRoutesUser />,
       children: [
         {
           //hacer coincidir esta ruta con la del componente ProtectedRoutesUser
@@ -144,7 +90,7 @@ function App() {
         { path: "/menu/:id", element: <MenuItems menuCategories={menuCategories}/> }
       ]    
     },
-    { path: "/menuAdmin", element: <ProtectedRoutesAdmin isSignedIn={isLoggedIn} isAdmin={isAdmin}/>,
+    { path: "/menuAdmin", element: <ProtectedRoutesAdmin />,
       children: [
         {
           //hacer coincidir esta ruta con la del componente ProtectedRoutesAdmin

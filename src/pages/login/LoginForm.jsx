@@ -2,8 +2,11 @@ import { useRef } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Col, Form, FormGroup, Row } from "react-bootstrap";
+import { useContext } from "react";
+import { AuthenticationContext } from "../../components/services/authentication/Authentication.Context";
 
-const LoginForm = ({ onLogin }) => {
+const LoginForm = () => {
+  const { handleLogin } = useContext(AuthenticationContext);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [errors, setErrors] = useState({
@@ -42,10 +45,11 @@ const LoginForm = ({ onLogin }) => {
       return;
     }
 
+    //fetch al login de la fake-api
+
+    const loginFlag = handleLogin(userEmail, userPassword);
     setUserEmail("");
     setUserPassword("");
-
-    const loginFlag = onLogin(userEmail, userPassword);
 
     if (loginFlag) {
       navigate("/menuAdmin");
