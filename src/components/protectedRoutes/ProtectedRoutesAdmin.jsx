@@ -1,12 +1,17 @@
+import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { AuthenticationContext } from "../services/authentication/Authentication.Context";
 
-const ProtectedRoutesAdmin = ({ isSignedIn, isAdmin }) => {
+const ProtectedRoutesAdmin = () => {
+
+  const { currentUser } = useContext(AuthenticationContext);
+
     //si no está logueado se lo redirige al login
-  if (!isSignedIn) {
+  if (!currentUser) {
     return <Navigate to="/login" replace />;
   }
     //si está logueado, pero no es Admin, lo redirige a la seccion para usuarios
-  if (!isAdmin) {
+  if (!currentUser.adminRole) {
     //asociar el Navigate to= con el nombre de ruta correspondiente
     return <Navigate to="/menu" replace />;
   }
