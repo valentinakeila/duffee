@@ -49,10 +49,23 @@ const buttonStyle = {
   backgroundColor: '#fcbb79',
   color: 'black',
 };
+const blackStripStyle = {
+  backgroundColor: 'black',
+  color: 'white',
+  textAlign: 'center',
+  padding: '20px 0',
+  width: '100%',
+};
+
+const blackStripParagraphStyle = {
+  margin: 0,
+  fontSize: '1.5em',
+};
 
 function AppCarousel() {
   return (
-    <Carousel interval={2000} pause={false}>
+    <>
+    <Carousel interval={2000} pause={false} controls={false} indicators={false}>
       <Carousel.Item>
         <div style={{ position: 'relative' }}>
           <img
@@ -100,6 +113,12 @@ function AppCarousel() {
         </div>
       </Carousel.Item>
     </Carousel>
+    <div style={blackStripStyle}>
+        <p style={blackStripParagraphStyle}>
+          ¡Descubre la mejor selección de cafés y delicias en Duffee! Visítanos hoy y vive una experiencia única.
+        </p>
+      </div>
+    </>
   );
 }
 
