@@ -6,7 +6,7 @@ import logo from "../../assets/duffee-logo.png"
 function Navigation() {
   return (
    
-<nav class="d-flex bg-dark text-light" style={{height:"5rem"}}>
+<nav class="d-flex bg-black text-light" style={{height:"5rem"}}>
         <div class="col-4 d-flex align-items-center ps-5">
         <a href="" class="text-white text-decoration-none fs-3">Nuestra Carta</a>
         </div>
