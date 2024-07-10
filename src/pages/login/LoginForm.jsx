@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Col, Form, FormGroup, Row } from "react-bootstrap";
 import { useContext } from "react";
-import { AuthenticationContext } from "../../components/services/authentication/Authentication.Context";
+import { AuthenticationContext } from "../../components/services/authentication/authentication.context";
 
 const LoginForm = () => {
   const { handleLogin } = useContext(AuthenticationContext);
@@ -31,7 +31,7 @@ const LoginForm = () => {
     setUserPassword(inputPassword);
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
     if (emailRef.current.value.length === 0) {
       emailRef.current.focus();
@@ -47,7 +47,7 @@ const LoginForm = () => {
 
     //fetch al login de la fake-api
 
-    const loginFlag = handleLogin(userEmail, userPassword);
+    const loginFlag = await handleLogin(userEmail, userPassword);
     setUserEmail("");
     setUserPassword("");
 
@@ -55,7 +55,7 @@ const LoginForm = () => {
       navigate("/menuAdmin");
     } else {
       alert("Alguno de los datos ingresados no es correcto.")
-    }
+    } 
   };
 
   return (
