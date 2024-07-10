@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { AuthenticationContext } from "../services/authentication/Authentication.Context";
+import { AuthenticationContext } from "../services/authentication/authentication.context";
 
 const ProtectedRoutesAdmin = () => {
 
