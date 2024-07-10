@@ -1,4 +1,4 @@
-import { useState, createContext, Children } from "react";
+import { useState, createContext } from "react";
 
 export const AuthenticationContext = createContext();
 
@@ -7,8 +7,8 @@ export const AuthenticationContext = createContext();
 export const AuthenticationContextProvider = ({ children }) => {
 
     const [currentUser, setCurrentUser] = useState(null);
-    console.log("usuario seteado al inicio:");
-    console.log(currentUser);
+    //console.log("usuario seteado al inicio:");
+    //console.log(currentUser);
 
     const handleLogin = async (email, password) => {
 
