@@ -35,11 +35,11 @@ function OurStory() {
         </div>
       </div>
 
-      <div class="col-md-7 d-flex flex-column gap-5">
-        <h2 class="featurette-heading fw-normal lh-1 display-1">
-          Duffee, <span class="text-body-secondary">nuestra historia:</span>
+      <div className="col-md-7 d-flex flex-column gap-5">
+        <h2 className="featurette-heading fw-normal lh-1 display-1">
+          Duffee, <span className="text-body-secondary">nuestra historia:</span>
         </h2>
-        <p class="lead fs-3 ">
+        <p className="lead fs-3 ">
           {" "}
           Fundada en 1922 por un grupo de programadores apasionados por el café,{" "}
           <span className="fw-bold">Duffee</span> nació con la misión de ofrecer
