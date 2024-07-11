@@ -18,7 +18,7 @@ function NavBarAdmin() {
           href=""
           className="text-white text-decoration-none fs-3 pe-5 m-5 hover-color"
         >
-          Quienes somos
+          Home
         </a>
       </div>
       <div className="col-4 d-flex justify-content-center bg-red">
