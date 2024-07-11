@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import carousel1 from "./diferentes-tipos-de-cafes.jpg";
 import carousel2 from "./empty-cafe.webp";
 import carousel3 from "./cafetorta.jpg";
+import { useNavigate } from "react-router-dom";
 
 const imageStyle = {
   maxHeight: '80vh',
@@ -63,6 +64,7 @@ const blackStripParagraphStyle = {
 };
 
 function AppCarousel() {
+  const navigate = useNavigate();
   return (
     <>
     <Carousel interval={2000} pause={false} controls={false} indicators={false}>
@@ -92,8 +94,9 @@ function AppCarousel() {
           <div style={overlayStyle}></div>
           <Carousel.Caption style={captionStyle}>
           <p style={paragraphStyle}>¡Bienvenidos!</p>
-          <button style={buttonStyle}>Iniciar sesión</button>
-            
+          <button style={buttonStyle} onClick={() => navigate("/login")}>
+                Iniciar sesión
+              </button>
           </Carousel.Caption>
         </div>
       </Carousel.Item>
@@ -108,7 +111,9 @@ function AppCarousel() {
           <div style={overlayStyle}></div>
           <Carousel.Caption style={captionStyle}>
             <p style={paragraphStyle}>Visite nuestro menú</p>
-            <button style={buttonStyle}>Menú</button>
+            <button style={buttonStyle} onClick={() => navigate("/menu")}>
+                Menú
+              </button>
           </Carousel.Caption>
         </div>
       </Carousel.Item>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Card, Col, Form, FormGroup, Row } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthenticationContext } from "../../components/services/authentication/UserAuthenticationContext";
+import duffeelogo from "./duffeelogo.png";
 
 const LoginForm = () => {
   const { currentUser, handleLogin } = useContext(AuthenticationContext);
@@ -56,18 +57,29 @@ const LoginForm = () => {
         navigate("/admin/menu");
       } else {
         navigate("/menu");
-      }      
+      }
     } else {
-      alert("Alguno de los datos ingresados no es correcto.")
-    } 
+      alert("Alguno de los datos ingresados no es correcto.");
+    }
   };
 
   return (
-    <div className="d-flex justify-content-center mt-5">
-      <Card className="w-40 mt-5 mx-3 p-3 px-5 shadow">
+    <div className="d-flex flex-column align-items-center mt-5 ">
+      <img
+        src={duffeelogo}
+        alt="Duffee Logo"
+        style={{
+          width: "500px",
+          height: "300px",
+          marginTop:"-4%",
+          marginBottom:"-5%"
+        }}
+      
+      />
+      <Card className="w-40 m-5 mx-3 p-3 px-5 shadow">
         <Card.Body>
           <Row>
-            <h5 className="mb-4">¡Bienvenidos a DuffeeExpress!</h5>
+            <h5 className="mb-4">¡Bienvenidos a Duffee!</h5>
           </Row>
           <Form onSubmit={onSubmitHandler}>
             <FormGroup className="mb-4">
