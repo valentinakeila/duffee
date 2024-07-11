@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { AuthenticationContext } from "../../components/services/authentication/UserAuthenticationContext";
 
 const LoginForm = () => {
-  const { handleLogin } = useContext(AuthenticationContext);
+  const { currentUser, handleLogin } = useContext(AuthenticationContext);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [errors, setErrors] = useState({
@@ -47,12 +47,16 @@ const LoginForm = () => {
 
     //fetch al login de la fake-api
 
-    const loginFlag = await handleLogin(userEmail, userPassword);
+    const succesUser = await handleLogin(userEmail, userPassword);
     setUserEmail("");
     setUserPassword("");
 
-    if (loginFlag) {
-      navigate("/menuAdmin");
+    if (succesUser) {
+      if (succesUser.adminRole) {
+        navigate("/admin/menu");
+      } else {
+        navigate("/menu");
+      }      
     } else {
       alert("Alguno de los datos ingresados no es correcto.")
     } 

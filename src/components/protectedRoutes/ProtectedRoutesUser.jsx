@@ -10,13 +10,13 @@ const ProtectedRoutesUser = () => {
   if (!currentUser) {
     return <Navigate to="/login" replace />;
   }
-    //si está logueado y es Admin, lo redirige a la seccion para Admin
+    //si está logueado y es Admin, le mustra la página de "Unauthorized"
   if (currentUser.adminRole) {
     //asociar el Navigate to= con el nombre de ruta correspondiente
-    return <Navigate to="/menuAdmin" replace />;
+    return <Navigate to="/unauthorized" replace />;
   }
 
-  //Si está logueado y no es Admin retorna el Outlet y lo deja navegar por la sección de User
+  //Si está logueado y no es Admin retorna el Outlet y lo deja navegar por la sección privada de User
   return <Outlet />;
 };
 

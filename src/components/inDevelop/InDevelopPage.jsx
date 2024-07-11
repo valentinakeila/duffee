@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const PageNotFound = () => {
+const InDevelopPage = ({ sectionName }) => {
   const navigate = useNavigate();
   const onClickReturnHomeHandler = () => {
     navigate("/");
@@ -9,7 +9,7 @@ const PageNotFound = () => {
 
   return (
     <div className="text-center mt-3">
-      <h2> ¡Ups! La página solicitada no fue encontrada</h2>
+      <h2> Lo sentimos, pero la sección de {sectionName} aún está en desarrollo.</h2>
       <Button className="text-center" onClick={onClickReturnHomeHandler}>
         Volver al inicio.
       </Button>
@@ -17,4 +17,4 @@ const PageNotFound = () => {
   );
 };
 
-export default PageNotFound;
+export default InDevelopPage;

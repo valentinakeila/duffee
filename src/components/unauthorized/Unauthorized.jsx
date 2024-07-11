@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const PageNotFound = () => {
+const Unauthorized = () => {
   const navigate = useNavigate();
   const onClickReturnHomeHandler = () => {
     navigate("/");
@@ -9,7 +9,7 @@ const PageNotFound = () => {
 
   return (
     <div className="text-center mt-3">
-      <h2> ¡Ups! La página solicitada no fue encontrada</h2>
+      <h2> Usted no se encuentra autorizado para visitar esta sección.</h2>
       <Button className="text-center" onClick={onClickReturnHomeHandler}>
         Volver al inicio.
       </Button>
@@ -17,4 +17,4 @@ const PageNotFound = () => {
   );
 };
 
-export default PageNotFound;
+export default Unauthorized;

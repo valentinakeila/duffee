@@ -12,7 +12,7 @@ function MenuCardAdmin({category,setShowEditForm,editId,setEditId}) {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    navigate(`/menuAdmin/${category.id}`, {
+    navigate(`/admin/menu/${category.id}`, {
       state: {
         category: {
           name: category.name,
