@@ -8,7 +8,7 @@ function Menu({menuCategories}) {
   return (
     <>
         <Navigation/>
-        <MenuList menuCategories={menuCategories}/>
+        <MenuList/>
         <Footer/>
     </>
   )

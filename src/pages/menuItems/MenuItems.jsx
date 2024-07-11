@@ -10,13 +10,13 @@ function MenuItems() {
         const location = useLocation();
         const navigate = useNavigate();
 
-        const { name, items} = location.state.category
+        const { categoryName, categoryId} = location.state.category
 
 
   return (
     <div>
         <Navigation/>
-        <ItemList items={items} name={name}/>
+        <ItemList categoryName={categoryName} categoryId={categoryId}/>
         <Footer/>
     </div>
   )

@@ -1,8 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import { AuthenticationContext } from "../../components/services/authentication/UserAuthenticationContext";
+import { useContext } from "react";
 
-function EditForm({ showEditForm, setShowEditForm, menuCategories, setMenuCategories,editId }) {
+function EditForm({ showEditForm, setShowEditForm, menuCategories, setMenuCategories, editId }) {
   const [name, setName] = useState('');
-  const [imageUrl, setImageUrl] = useState('')
+  const [imageUrl, setImageUrl] = useState('');
+  const { currentUser, handleLogin } = useContext(AuthenticationContext);
+
+
+  useEffect(() => {
+    const categoryToEdit = menuCategories.find(category => category.id === editId);
+    if (categoryToEdit) {
+      setName(categoryToEdit.name);
+      setImageUrl(categoryToEdit.imageUrl);
+    }
+  }, [editId, menuCategories]);
 
   const nameHandler = (e) => {
     setName(e.target.value);
@@ -12,50 +24,77 @@ function EditForm({ showEditForm, setShowEditForm, menuCategories, setMenuCatego
     setImageUrl(e.target.value);
   }
 
-  const deleteHandler = (e) => {
+  const deleteHandler = async (e) => {
+    e.preventDefault();
 
-    e.preventDefault()
+    if (window.confirm("¿Estás seguro de que quieres borrar esta categoría?")) {
+      try {
+        const response = await fetch(`http://localhost:8000/categories/${editId}`, {
+          method: 'DELETE',
+          headers: {
+            "Authorization": `Bearer ${currentUser.accessToken}`
+          }
+        });
 
-    if(confirm("Borrar categoria?")){
-      const filteredCategories = menuCategories.filter(category => category.id !== editId);
-      setMenuCategories(filteredCategories);
-
-      setShowEditForm(false)
+        if (response.ok) {
+          const filteredCategories = menuCategories.filter(category => category.id !== editId);
+          setMenuCategories(filteredCategories);
+          setShowEditForm(false);
+        } else {
+          console.error('Error al borrar la categoría:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error al borrar la categoría:', error);
+      }
     }
-    
   }
 
   const cancelHandler = (e) => {
-    e.preventDefault()
-    setShowEditForm(false)
+    e.preventDefault();
+    setShowEditForm(false);
   }
 
-
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-  
-  
-  
-    const updatedCategories = menuCategories.map(category => {
-      if (category.id === editId) {
-        return {
-          ...category,
-          name: name,
-          imageUrl: imageUrl
-        };
+
+    const updatedCategory = {
+      name: name,
+      imageUrl: imageUrl,
+    };
+
+    try {
+      const response = await fetch(`http://localhost:8000/categories/${editId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.accessToken}`
+        },
+        body: JSON.stringify(updatedCategory),
+      });
+
+      if (response.ok) {
+        const updatedCategories = menuCategories.map(category => {
+          if (category.id === editId) {
+            return {
+              ...category,
+              name: name,
+              imageUrl: imageUrl
+            };
+          }
+          return category;
+        });
+
+        setMenuCategories(updatedCategories);
+        setName('');
+        setImageUrl('');
+        setShowEditForm(false);
+      } else {
+        console.error('Error al actualizar la categoría:', response.statusText);
       }
-      return category;
-    })
-
-    setMenuCategories(updatedCategories); 
-
-    setImageUrl("");
-    setName("");
-    setShowEditForm(false)
+    } catch (error) {
+      console.error('Error al actualizar la categoría:', error);
+    }
   };
-  
-
-  
 
   return (
     <div className='d-flex justify-content-center align-items-center'
