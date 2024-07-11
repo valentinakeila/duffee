@@ -10,8 +10,8 @@ function MenuCard({category}) {
     navigate(`/menu/${category.id}`, {
       state: {
         category: {
-          name: category.name,
-          items: category.items
+          categoryName: category.name,
+          categoryId: category.id
         }
       }
     });

@@ -7,6 +7,7 @@ function ItemCard({ item }) {
 
     const clickHandler = () => {
         toast.success('Se agregó al pedido!')
+        //Agregar al carrito
     };
 
     const encodedUrl = encodeURI(item.imageUrl); // la imagen no se ve sino XD

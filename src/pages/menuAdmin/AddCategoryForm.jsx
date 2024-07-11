@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { AuthenticationContext } from "../../components/services/authentication/UserAuthenticationContext";
+import { useContext } from "react";
 
-function AddCategoryForm({ showCreateForm, setShowCreateForm, menuCategories, setMenuCategories }) {
+function AddCategoryForm({ showCreateForm, setShowCreateForm, menuCategories, setMenuCategories , GetAllCategories}) {
   const [name, setName] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const { currentUser, handleLogin } = useContext(AuthenticationContext);
 
   const nameHandler = (e) => {
     setName(e.target.value);
@@ -12,32 +15,45 @@ function AddCategoryForm({ showCreateForm, setShowCreateForm, menuCategories, se
     setImageUrl(e.target.value);
   }
 
-  const [newCategory, setNewCategory] = useState({})
 
   const cancelHandler = () => {
     setShowCreateForm(false)
   }
 
-
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
   
     const newCategory = {
       name: name,
       imageUrl: imageUrl,
-      id: Math.random().toString(36).substr(2, 9)
     };
   
-    // Actualizar el estado de newCategory directamente
-    setNewCategory(newCategory);
+    try {
+      const response = await fetch('http://localhost:8000/categories', {
+        method: 'POST',
+        headers: {
+          "content-type": "application/json",
+          "authorization": `Bearer ${currentUser.accessToken}`
+        },
+        body: JSON.stringify(newCategory),
+      });
   
-    // Agregar la nueva categoría a menuCategories usando una función de callback
-    setMenuCategories(prevCategories => [...prevCategories, newCategory]);
+      if (response.ok) {
+        const data = await response.json(); // Obtener la categoría creada desde la respuesta
   
-    setImageUrl("");
-    setName("");
-    setNewCategory({});
-    setShowCreateForm(false)
+        // Actualizar el estado local con la nueva categoría
+        setMenuCategories(prevCategories => [...prevCategories, data]);
+  
+        // Resetear el formulario y cerrar el modal
+        setName('');
+        setImageUrl('');
+        setShowCreateForm(false);
+      } else {
+        console.error('Error al crear la categoría:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al crear la categoría:', error);
+    }
   };
   
 
