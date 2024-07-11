@@ -13,6 +13,8 @@ import MenuItemsAdmin from './pages/menuItemsAdmin/MenuItemsAdmin';
 import PageNotFound from './components/pageNotFound/PageNotFound';
 import ProtectedRoutesUser from './components/protectedRoutes/ProtectedRoutesUser';
 import ProtectedRoutesAdmin from './components/protectedRoutes/ProtectedRoutesAdmin';
+import Unauthorized from './components/unauthorized/Unauthorized';
+import InDevelopPage from './components/inDevelop/InDevelopPage';
 
 function App() {
 
@@ -78,26 +80,32 @@ function App() {
     //rutas públicas
     { path: "/", element: <Landing /> },
     { path: "/login", element: <LoginPage /> },
+    { path: "/menu", element: <Menu menuCategories={menuCategories}/>},
+    { path: "/menu/:id", element: <MenuItems menuCategories={menuCategories}/>},
+    { path: "/unauthorized", element: <Unauthorized /> },
     { path: "*", element: <PageNotFound/> },
     //rutas privadas...
-    { path: "/menu", element: <ProtectedRoutesUser />,
-      children: [
+    { path: "/user", element: <ProtectedRoutesUser />,
+      children: [ //rutas privadas de user
         {
-          //hacer coincidir esta ruta con la del componente ProtectedRoutesUser
-          path: "/menu", element: <Menu menuCategories={menuCategories}/>
+          path: "/user/shoppingChart", element: <InDevelopPage sectionName={"user/shoppingChart"}/>
         },
-        //Agregar aquí las rutas anidadas de User
-        { path: "/menu/:id", element: <MenuItems menuCategories={menuCategories}/> }
+        { 
+          path: "/user/orderList", element: <InDevelopPage sectionName={"user/orderList"}/>
+        }
       ]    
     },
-    { path: "/menuAdmin", element: <ProtectedRoutesAdmin />,
-      children: [
+    { path: "/admin", element: <ProtectedRoutesAdmin />,
+      children: [ //rutas privadas de admin
         {
-          //hacer coincidir esta ruta con la del componente ProtectedRoutesAdmin
-          path: "/menuAdmin", element: <MenuAdmin menuCategories={menuCategories} setMenuCategories={setMenuCategories}/>
+          path: "/admin/menu", element: <MenuAdmin menuCategories={menuCategories} setMenuCategories={setMenuCategories}/>
         },
-        //agregar aquí las rutas anidadas de Admin
-          { path: "/menuAdmin/:id", element: <MenuItemsAdmin menuCategories={menuCategories}  setMenuCategories={setMenuCategories}/> }
+        { 
+          path: "/admin/menu/:id", element: <MenuItemsAdmin menuCategories={menuCategories}  setMenuCategories={setMenuCategories}/>
+        },
+        { 
+          path: "/admin/orderList", element: <InDevelopPage sectionName={"admin/orderList"}/>
+        }
       ]
     },
   ]);
