@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import ShoppingCartItem from './ShoppingCartItem';
-import cafeComun from "../productsPage/productsImages/coffees/cafeComun.jpeg"
-import cafeCortado from "../productsPage/productsImages/coffees/cafeCortado.jpeg"
-import capuccino from "../productsPage/productsImages/coffees/capuccino.jpeg"
 
 const ShoppingCartPage = () => {
 
@@ -11,19 +8,19 @@ const ShoppingCartPage = () => {
         {
             id: "p1",
             name: "Café común",
-            imgUrl: cafeComun,
+            imgUrl: "cafeComun",
             price: 750
         },
         {
             id: "p2",
             name: "Cortado",
-            imgUrl: cafeCortado,
+            imgUrl: "cafeCortado",
             price: 900
         },
         {
             id: "p3",
             name: "Capuccino",
-            imgUrl: capuccino,
+            imgUrl: "capuccino",
             price: 1100
         }
     ];
