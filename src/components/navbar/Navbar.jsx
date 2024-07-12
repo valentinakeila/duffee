@@ -36,7 +36,7 @@ function Navigation() {
       <div className="col-4 d-flex align-items-center ps-5 justify-content-end gap-5">
         <a
           href="#"
-          onClick={() => navigate("/about")}
+          onClick={() => navigate("/")}
           className="text-white text-decoration-none fs-3 pe-5 hover-color"
         >
           Quienes somos
