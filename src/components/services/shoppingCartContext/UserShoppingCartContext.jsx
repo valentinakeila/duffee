@@ -18,6 +18,7 @@ export const ShoppingCartContextProvider = ({ children }) => {
                 localStorage.setItem("storedShoppingCart", JSON.stringify(auxNewArray));
             } else {
                 const auxNewArray = [item];
+                setShoppingCart(auxNewArray)
                 localStorage.setItem("storedShoppingCart", JSON.stringify(auxNewArray));
             }
     };
