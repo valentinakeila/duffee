@@ -5,6 +5,7 @@ import Landing from './pages/landing/Landing';
 import LoginPage from './pages/login/LoginPage';
 import Form from './pages/form/FormPage';
 import Menu from './pages/menu/Menu';
+import ShoppingCartPage from './components/shoppingCart/ShoppingCartPage';
 
 import MenuItems from './pages/menuItems/MenuItems';
 
@@ -35,7 +36,7 @@ function App() {
     { path: "/user", element: <ProtectedRoutesUser />,
       children: [ //rutas privadas de user
         {
-          path: "/user/shoppingChart", element: <InDevelopPage sectionName={"user/shoppingChart"}/>
+          path: "/user/shoppingCart", element: <ShoppingCartPage/>
         },
         { 
           path: "/user/orderList", element: <InDevelopPage sectionName={"user/orderList"}/>
