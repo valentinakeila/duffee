@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import Landing from './pages/landing/Landing';
 import LoginPage from './pages/login/LoginPage';
+import Form from './pages/form/FormPage';
 import Menu from './pages/menu/Menu';
 
 import MenuItems from './pages/menuItems/MenuItems';
@@ -15,6 +16,7 @@ import ProtectedRoutesUser from './components/protectedRoutes/ProtectedRoutesUse
 import ProtectedRoutesAdmin from './components/protectedRoutes/ProtectedRoutesAdmin';
 import Unauthorized from './components/unauthorized/Unauthorized';
 import InDevelopPage from './components/inDevelop/InDevelopPage';
+import FormPage from './pages/form/FormPage';
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
     //rutas públicas
     { path: "/", element: <Landing /> },
     { path: "/login", element: <LoginPage /> },
+    {path: "/form", element: <FormPage/>},
     { path: "/menu", element: <Menu/>},
     { path: "/menu/:id", element: <MenuItems/>},
     { path: "/unauthorized", element: <Unauthorized /> },

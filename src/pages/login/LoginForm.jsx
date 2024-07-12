@@ -65,24 +65,24 @@ const LoginForm = () => {
 
   return (
     <div className="d-flex flex-column align-items-center mt-5 ">
-      <img
-        src={duffeelogo}
-        alt="Duffee Logo"
-        style={{
-          width: "500px",
-          height: "300px",
-          marginTop:"-4%",
-          marginBottom:"-5%"
-        }}
-      
-      />
       <Card className="w-40 m-5 mx-3 p-3 px-5 shadow">
+        <img
+          src={duffeelogo}
+          alt="Duffee Logo"
+          style={{
+            width: "300px",
+            height: "150px",
+            marginTop: "-10%",
+            marginBottom: "-10%",
+          }}
+        />
         <Card.Body>
           <Row>
-            <h5 className="mb-4">¡Bienvenidos a Duffee!</h5>
+            <h5 className="mb-4 text-center">¡Bienvenidos!</h5>
           </Row>
           <Form onSubmit={onSubmitHandler}>
             <FormGroup className="mb-4">
+              <Form.Label htmlFor="email">Email:</Form.Label>
               <Form.Control
                 className={
                   errors.email &&
@@ -101,6 +101,7 @@ const LoginForm = () => {
               )}
             </FormGroup>
             <FormGroup className="mb-4">
+              <Form.Label htmlFor="password">Contraseña:</Form.Label>
               <Form.Control
                 className={
                   errors.password &&
@@ -119,7 +120,12 @@ const LoginForm = () => {
               )}
             </FormGroup>
             <Row>
-              <Col md={12} className="d-flex justify-content-end">
+              <Col md={6}>
+                <a href="#" onClick={() => navigate("/form")} className="text-decoration-none">
+                  Registrarse
+                </a>
+              </Col>
+              <Col md={6} className="d-flex justify-content-end">
                 <Button variant="secondary" type="submit">
                   Iniciar sesión
                 </Button>
