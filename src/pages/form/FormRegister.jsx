@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { Button, Card, Col, Form, FormGroup, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import duffeelogo from './duffeelogo.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function FormRegister() {
   const [firstName, setFirstName] = useState('');
@@ -21,7 +23,7 @@ function FormRegister() {
 
   const handleRegister = async () => {
     try {
-      const response = await fetch('http://localhost:8000/users', {
+      const response = await fetch('http://localhost:8000/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +45,10 @@ function FormRegister() {
       setEmail('');
       setPassword('');
 
+      toast.success('Se registró con exito!')
+
       navigate('/login');
+
     } catch (error) {
       console.error('Error al registrar usuario:', error.message);
       alert('No se pudo registrar el usuario. Por favor, inténtalo de nuevo.');
@@ -97,6 +102,8 @@ function FormRegister() {
 
   return (
     <div className="d-flex flex-column align-items-center mt-5">
+      <ToastContainer style={{marginTop:"4rem"}} position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
+       
       <Card className="w-40 m-5 mx-3 p-3 px-5 shadow">
         <img
           src={duffeelogo}
