@@ -46,8 +46,6 @@ const LoginForm = () => {
       return;
     }
 
-    //fetch al login de la fake-api
-
     const succesUser = await handleLogin(userEmail, userPassword);
     setUserEmail("");
     setUserPassword("");
@@ -121,7 +119,11 @@ const LoginForm = () => {
             </FormGroup>
             <Row>
               <Col md={6}>
-                <a href="#" onClick={() => navigate("/form")} className="text-decoration-none">
+                <a
+                  href="#"
+                  onClick={() => navigate("/form")}
+                  className="text-decoration-none"
+                >
                   Registrarse
                 </a>
               </Col>

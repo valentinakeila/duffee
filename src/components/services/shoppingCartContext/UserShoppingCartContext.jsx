@@ -1,48 +1,86 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect, useContext } from "react";
+import { AuthenticationContext } from "../authentication/UserAuthenticationContext";
 
 export const ShoppingCartContext = createContext();
 
-const storedShoppingCart = JSON.parse(localStorage.getItem("storedShoppingCart"));
-
 export const ShoppingCartContextProvider = ({ children }) => {
+  const { currentUser } = useContext(AuthenticationContext);
+  const [shoppingCart, setShoppingCart] = useState([]);
+  const [auxString, setAuxString] = useState("");
 
-    const [shoppingCart, setShoppingCart] = useState(storedShoppingCart);
-    console.log("contenido del carrito al inicio:");
-    console.log(shoppingCart);
+  useEffect(() => {
+    if (currentUser != null) {
+      const auxNewArray = JSON.parse(
+        localStorage.getItem(`cartOf_${currentUser.email}`)
+      );
+      setShoppingCart(auxNewArray);
+      setAuxString(`cartOf_${currentUser.email}`);
+      console.log("carrito personal seleccionado!");
+    } else {
+      if (shoppingCart.length == 0) {
+        localStorage.removeItem(auxString);
+        console.log("Se borro el carrito vacio al cerrar sesion");
+      }
+      setShoppingCart([]);
+      console.log("no hay carrito seleccionado!");
+    }
+  }, [currentUser]);
 
-    const addToShoppingChart = (item) => {
-        //const auxShoppingCart = JSON.parse(localStorage.getItem("storedShoppingCart"));
-            if (shoppingCart) {
-                const auxNewArray = [item, ...shoppingCart];
-                setShoppingCart(auxNewArray)
-                localStorage.setItem("storedShoppingCart", JSON.stringify(auxNewArray));
-            } else {
-                const auxNewArray = [item];
-                setShoppingCart(auxNewArray)
-                localStorage.setItem("storedShoppingCart", JSON.stringify(auxNewArray));
-            }
-    };
+  console.log(`carrito actual: ${auxString}`);
+  console.log("contenido del carrito actual:");
+  console.log(shoppingCart);
 
-    const removeToShoppingChart = (item) => {
-        if (shoppingCart) {
-            const auxNewArray = [...shoppingCart];
-            const itemIndex = auxNewArray.findIndex(item)
-            if (itemIndex) {
-                auxNewArray.splice(itemIndex, 1)
-                setShoppingCart(auxNewArray)
-                localStorage.setItem("storedShoppingCart", JSON.stringify(auxNewArray));
-            }
-        }
-    };
+  const addToShoppingCart = (item) => {
+    if (shoppingCart != []) {
+      if (shoppingCart.includes(item)) {
+        return false;
+      } else {
+        const auxNewArray = [item, ...shoppingCart];
+        setShoppingCart(auxNewArray);
+        localStorage.setItem(
+          `cartOf_${currentUser.email}`,
+          JSON.stringify(auxNewArray)
+        );
+        return true;
+      }
+    } else {
+      const auxNewArray = [item];
+      setShoppingCart(auxNewArray);
+      localStorage.setItem(
+        `cartOf_${currentUser.email}`,
+        JSON.stringify(auxNewArray)
+      );
+      return true;
+    }
+  };
 
-    const emptyShoppingChart = () => {
-        localStorage.removeItem("storedShoppingCart");
-        setShoppingCart([]);
-    };
-
-    return (
-        <ShoppingCartContext.Provider value={{shoppingCart, addToShoppingChart, removeToShoppingChart, emptyShoppingChart}}>
-            {children}
-        </ShoppingCartContext.Provider>
+  const removeToShoppingCart = (itemId) => {
+    const auxNewFilteredArray = shoppingCart.filter(
+      (item) => item.id != itemId
     );
+    setShoppingCart(auxNewFilteredArray);
+    console.log(`en el carrito quedan: ${auxNewFilteredArray} `);
+    localStorage.setItem(
+      `cartOf_${currentUser.email}`,
+      JSON.stringify(auxNewFilteredArray)
+    );
+  };
+
+  const emptyShoppingCart = () => {
+    setShoppingCart([]);
+    localStorage.setItem(`cartOf_${currentUser.email}`, JSON.stringify([]));
+  };
+
+  return (
+    <ShoppingCartContext.Provider
+      value={{
+        shoppingCart,
+        addToShoppingCart,
+        removeToShoppingCart,
+        emptyShoppingCart,
+      }}
+    >
+      {children}
+    </ShoppingCartContext.Provider>
+  );
 };
