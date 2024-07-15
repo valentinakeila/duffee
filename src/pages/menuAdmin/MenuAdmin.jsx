@@ -5,6 +5,7 @@ import MenuListAdmin from './MenuListAdmin';
 import AddCategory from './AddCategory';
 import AddCategoryForm from './AddCategoryForm';
 import EditForm from './EditForm';
+import NavBarAdmin from '../../components/navbar/NavBarAdmin';
 
 function MenuAdmin() {
 
@@ -35,7 +36,7 @@ function MenuAdmin() {
 
   return (
     <>
-        <Navigation/>
+        <NavBarAdmin/>
         <AddCategory setShowCreateForm={setShowCreateForm} showEditForm={showEditForm}/>
 
         {showCreateForm === true ? (<AddCategoryForm menuCategories={menuCategories} setMenuCategories={setMenuCategories} GetAllCategories={GetAllCategories} showCreateForm={showCreateForm} setShowCreateForm={setShowCreateForm}/>) : ("")}
