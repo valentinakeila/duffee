@@ -1,22 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/duffee-logo.png";
+import { AuthenticationContext } from '../../components/services/authentication/UserAuthenticationContext';
+import { useNavigate } from "react-router-dom";
 
 function NavBarUser() {
+  const { handleLogout } = useContext(AuthenticationContext);
+  const navigate = useNavigate();
+
+  const handleLogoutAndNavigate = () => {
+    handleLogout();
+    navigate("/");
+  };
+
   return (
     <nav className="d-flex bg-black text-light" style={{ height: "5rem" }}>
-      <style jsx>{`
+      <style>{`
         .hover-color:hover {
           color: #ffc091 !important;
           //esta etiqueta te deja poner estilos css directamente en el componente
         }
       `}</style> 
       <div className="col-4 d-flex align-items-center ps-5">
-        <a href="" className="text-white text-decoration-none fs-3 hover-color">
+        <a href="#" className="text-white text-decoration-none fs-3 hover-color"
+        onClick={() => navigate("/menu")}>
           Nuestra Carta
         </a>
         <a
-          href=""
+          href="#"
           className="text-white text-decoration-none fs-3 pe-5 m-5 hover-color"
+          onClick={() => navigate("/")}
         >
           Quienes somos
         </a>
@@ -24,9 +36,7 @@ function NavBarUser() {
       <div className="col-4 d-flex justify-content-center bg-red">
         <img
           src={logo}
-          href=""
-          alt=""
-          srcSet=""
+          alt="Duffee logo"
           className="z-3"
           style={{
             width: "9rem",
@@ -37,7 +47,7 @@ function NavBarUser() {
         />
       </div>
       <div className="col-4 d-flex align-items-center ps-5 justify-content-end gap-5">
-        <a href="" className="text-white text-decoration-none fs-3 hover-color">
+        <a href="#" className="text-white text-decoration-none fs-3 hover-color">
           Pedidos
         </a>
         <button
@@ -55,16 +65,15 @@ function NavBarUser() {
             <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0" />
           </svg>
         </button>
-        <a
-          href=""
-          className="text-white text-decoration-none fs-3 pe-5 hover-color"
+        <button
+          className="text-white text-decoration-none fs-3 pe-5 hover-color btn btn-link"
+          onClick={handleLogoutAndNavigate}
         >
           Cerrar sesión
-        </a>
+        </button>
       </div>
     </nav>
   );
 }
 
 export default NavBarUser;
-
