@@ -1,23 +1,29 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import ShoppingCartItem from "./ShoppingCartItem";
 import { ShoppingCartContext } from "../services/shoppingCartContext/UserShoppingCartContext";
 
 const ShoppingCartPage = () => {
-  const { shoppingCart } = useContext(ShoppingCartContext);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const { shoppingCart, emptyShoppingCart } = useContext(ShoppingCartContext);
+  const [emptyFlag, setEmptyFlag] = useState(false);
+
+  const onClickEmptyHandler = () => {
+    emptyShoppingCart();
+  };
+
+  useEffect(() => {
+    if (shoppingCart.lenght == 0) {
+      setEmptyFlag(false);
+    } else {
+      setEmptyFlag(true);
+    }
+  }, [shoppingCart]);
 
   return (
     <div className="d-flex-column bg-warning bg-opacity-10">
       <div className="py-4 fs-1 fw-bold text-center text-dark">
         ---------- CARRITO DE COMPRAS ----------
-      </div>
-      <div className="d-flex justify-content-center">
-        {/*shoppingCart.lenght == 0 ? (
-          <h3>(Su carrito se encuentra vacío.)</h3>
-        ) : (
-          ""
-        )*/}
+        {emptyFlag ? "" : <h3>(Su carrito se encuentra vacío.)</h3>}
       </div>
       <div>
         {shoppingCart.map((item) => {
@@ -36,7 +42,12 @@ const ShoppingCartPage = () => {
         <div className="d-flex align-items-center text-dark px-3 fw-bold">
           TOTAL $ ####.##
         </div>
-        <Button variant="success">CONFIRMAR PEDIDO</Button>
+        <Button className="me-3" variant="success">
+          CONFIRMAR PEDIDO
+        </Button>
+        <Button variant="dark" onClick={onClickEmptyHandler}>
+          VACIAR CARRITO
+        </Button>
       </div>
     </div>
   );
