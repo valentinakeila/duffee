@@ -31,7 +31,7 @@ export const ShoppingCartContextProvider = ({ children }) => {
   console.log(shoppingCart);
 
   const addToShoppingCart = (item) => {
-    if (shoppingCart != []) {
+    if (shoppingCart != null) {
       if (shoppingCart.includes(item)) {
         return false;
       } else {
