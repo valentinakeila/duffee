@@ -64,7 +64,7 @@ function AddCategoryForm({ showCreateForm, setShowCreateForm, menuCategories, se
       style={{
         height: "80vh",
         width: "100%",
-        position: "absolute",
+        position: 'fixed',
         zIndex: 1000,
         backdropFilter: "blur(3px)",
         backgroundColor: "rgba(255, 255, 255, 0.1)"

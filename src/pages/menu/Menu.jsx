@@ -1,15 +1,18 @@
 import Footer from '../../components/footer/Footer';
 import Navigation from '../../components/navbar/Navbar';
-import React from 'react'
 import MenuList from './MenuList';
+import NavBarUser from '../../components/navbar/NavBarUser';
+import { AuthenticationContext } from '../../components/services/authentication/UserAuthenticationContext';
+import React, { useContext } from 'react';
 
-function Menu({menuCategories}) {
+function Menu({ menuCategories }) {
+  const { currentUser } = useContext(AuthenticationContext);
 
   return (
     <>
-        <Navigation/>
+      {currentUser ? <NavBarUser /> : <Navigation />}
         <MenuList/>
-        <Footer/>
+        <Footer/> 
     </>
   )
 }
