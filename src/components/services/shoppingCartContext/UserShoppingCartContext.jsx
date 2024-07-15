@@ -7,6 +7,7 @@ export const ShoppingCartContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthenticationContext);
   const [shoppingCart, setShoppingCart] = useState([]);
   const [auxString, setAuxString] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     if (currentUser != null) {
@@ -29,10 +30,12 @@ export const ShoppingCartContextProvider = ({ children }) => {
   console.log(`carrito actual: ${auxString}`);
   console.log("contenido del carrito actual:");
   console.log(shoppingCart);
+  //console.log(shoppingCart.length);
 
   const addToShoppingCart = (item) => {
+    console.log("clicked");
     if (shoppingCart != []) {
-      if (shoppingCart.includes(item)) {
+      if (shoppingCart.some((element) => element == item)) {
         return false;
       } else {
         const auxNewArray = [item, ...shoppingCart];
@@ -67,9 +70,12 @@ export const ShoppingCartContextProvider = ({ children }) => {
   };
 
   const emptyShoppingCart = () => {
+    console.log("vaciando");
     setShoppingCart([]);
     localStorage.setItem(`cartOf_${currentUser.email}`, JSON.stringify([]));
   };
+
+  const confirmOrder = () => {};
 
   return (
     <ShoppingCartContext.Provider
