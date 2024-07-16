@@ -41,8 +41,6 @@ function ItemCard({ item }) {
         backgroundPosition: "center",
       }}
     >
-
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" transition: Bounce/>
       <div className="w-100 h-50 d-flex justify-content-end">
         <span
           className="p-3 display-6 fst-italic fw-bolder"

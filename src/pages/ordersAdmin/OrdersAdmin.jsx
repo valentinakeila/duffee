@@ -27,8 +27,13 @@ function OrdersAdmin() {
     }
   }
 
-  useEffect(() => {
+
+
+   useEffect(() => {
     GetAllOrders();
+    const intervalId = setInterval(GetAllOrders, 60000); // 60000ms = 1 minuto
+    
+    return () => clearInterval(intervalId); // Limpia el intervalo al desmontar el componente
   }, []);
 
   return (

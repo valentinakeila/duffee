@@ -103,7 +103,8 @@ export const ShoppingCartContextProvider = ({ children }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'accept': 'application/json'
+          'accept': 'application/json',
+          "authorization": `Bearer ${currentUser.accessToken}`
         },
         body: JSON.stringify(newOrder),
       });

@@ -1,7 +1,10 @@
 import React from 'react';
 import { AuthenticationContext } from "../../components/services/authentication/UserAuthenticationContext";
 import { useContext } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./checkbox.css"
+import "./toastColor.css"
 
 function OrderCard({ order,GetAllOrders }) {
 
@@ -22,6 +25,9 @@ function OrderCard({ order,GetAllOrders }) {
     
             if (response.ok) {
               GetAllOrders()
+              toast.success("Completada!", {
+                className: "custom-toast",
+              });
             } else {
               console.error('Error al borrar la orden');
             }
@@ -33,7 +39,7 @@ function OrderCard({ order,GetAllOrders }) {
 
 
   return (
-    <div className='p-2 px-3 mx-2 rounded' style={{border:"solid 2px #CAB4FF",backgroundColor:"rgba(255, 249, 247, 0.97)",width:"60%",color:"#384048"}}>
+    <div className='p-2 px-3 mx-2 rounded' style={{border:"solid 2px #CAB4FF",width:"60%",color:"#384048"}}>
          <div className='w-100 d-flex fs-5 fw-bolder'>
         <div className='w-100 d-flex flex-column gap-2 fs-4'>
         <h3>Orden N°{order.id}</h3>
