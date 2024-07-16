@@ -1,14 +1,16 @@
 import Footer from '../../components/footer/Footer';
 import Navigation from '../../components/navbar/Navbar';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import MenuListAdmin from './MenuListAdmin';
 import AddCategory from './AddCategory';
 import AddCategoryForm from './AddCategoryForm';
 import EditForm from './EditForm';
 import NavBarAdmin from '../../components/navbar/NavBarAdmin';
+import NavBarSysAdmin from '../../components/navbar/NavBarSysAdmin';
+import { AuthenticationContext } from '../../components/services/authentication/UserAuthenticationContext';
 
 function MenuAdmin() {
-
+   const { currentUser } = useContext(AuthenticationContext);
   const [showCreateForm,setShowCreateForm] = useState(false)
   const [showEditForm,setShowEditForm] = useState(false)
 
@@ -33,10 +35,19 @@ function MenuAdmin() {
   useEffect(() => {
     GetAllCategories();
   }, []);
+  useEffect(() => {
+    console.log("Current User:", currentUser);
+  }, [currentUser]);
+  useEffect(() => {
+    console.log("Current User:", currentUser);
+    console.log("Is SysAdmin:", currentUser?.isSysAdmin);
+  }, [currentUser]);
 
+
+  
   return (
     <>
-        <NavBarAdmin/>
+        {currentUser.isSysAdmin ? <NavBarAdmin /> : <NavBarSysAdmin /> }
         <AddCategory setShowCreateForm={setShowCreateForm} showEditForm={showEditForm}/>
 
         {showCreateForm === true ? (<AddCategoryForm menuCategories={menuCategories} setMenuCategories={setMenuCategories} GetAllCategories={GetAllCategories} showCreateForm={showCreateForm} setShowCreateForm={setShowCreateForm}/>) : ("")}

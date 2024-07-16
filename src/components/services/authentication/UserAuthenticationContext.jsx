@@ -36,6 +36,7 @@ export const AuthenticationContextProvider = ({ children }) => {
           firstName: data.firstName,
           lastName: data.lastName,
           adminRole: data.status,
+          isSysAdmin: data.isSysAdmin,
           email: data.email,
           accessToken: data.accessToken,
         };
