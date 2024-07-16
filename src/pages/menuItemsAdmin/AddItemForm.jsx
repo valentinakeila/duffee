@@ -37,6 +37,7 @@ function AddItemForm({ categoryId, setShowCreateForm,GetAllItems }) {
       desc,
       price: parseFloat(price),
       imageUrl,
+      quantity: 1,
       categorieId: categoryId,
     };
   

@@ -41,16 +41,23 @@ export const ShoppingCartContextProvider = ({ children }) => {
   console.log(`contenido del carrito: ${shoppingCart}`);
 
   const addToShoppingCart = (item) => {
-    console.log("add clicked");
-    if (shoppingCart != []) {
-      if (shoppingCart.includes(item)) {
-        return false;
-      } else {
+    if (shoppingCart != [] && shoppingCart != null) {
+      let alreadyExistFlag = false
+      shoppingCart.map((itemCart) => {
+        if(itemCart.id === item.id){
+          alreadyExistFlag = true
+        }
+      })
+
+      if (alreadyExistFlag) {
+        return false
+      }else {
         const auxNewArray = [item, ...shoppingCart];
         setShoppingCart(auxNewArray);
         localStorage.setItem(currentCartName, JSON.stringify(auxNewArray));
         return true;
       }
+      
     } else {
       const auxNewArray = [item];
       setShoppingCart(auxNewArray);
@@ -73,23 +80,53 @@ export const ShoppingCartContextProvider = ({ children }) => {
     localStorage.setItem(currentCartName, JSON.stringify(auxNewArray));
   };
 
-  const updateTotalPrice = (prevNumber, currentNumber) => {
-    let auxTotalPrice = totalPrice;
-    auxTotalPrice = auxTotalPrice - prevNumber + currentNumber;
-    setTotalPrice(auxTotalPrice);
+  const updateTotalPrice = () => {
+    if (shoppingCart != null) {
+      let priceAux = 0
+      shoppingCart.map((item) => {
+        priceAux = priceAux + (parseFloat(item.price) * parseInt(item.quantity))
+        console.log(item.quantity)
+      })
+      setTotalPrice(priceAux)
+    }
   };
 
-  const confirmOrder = () => {};
+  const confirmOrder = async (e) => {
+    const newOrder = {shoppingCart,
+      totalPrice: totalPrice
+    }
+
+    try {
+      const response = await fetch('http://localhost:8000/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'accept': 'application/json'
+        },
+        body: JSON.stringify(newOrder),
+      });
+      if (response.ok) {
+        emptyShoppingCart()
+      } else {
+        console.error('Error al agregar orden');
+      }
+    } catch (error) {
+      console.error('Error al agregar orden:', error);
+    }
+
+  };
 
   return (
     <ShoppingCartContext.Provider
       value={{
+        setShoppingCart,
         shoppingCart,
         totalPrice,
         addToShoppingCart,
         removeToShoppingCart,
         emptyShoppingCart,
-        updateTotalPrice
+        updateTotalPrice,
+        confirmOrder
       }}
     >
       {children}

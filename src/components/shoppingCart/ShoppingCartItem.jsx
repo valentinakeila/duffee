@@ -3,52 +3,52 @@ import { useState, useContext, useEffect } from "react";
 import UnitCounter from "./UnitCounter";
 import { ShoppingCartContext } from "../services/shoppingCartContext/UserShoppingCartContext";
 
-const ShoppingCartItem = ({ itemId, imageUrl, productName, productPrice }) => {
+const ShoppingCartItem = ({ itemId, imageUrl, productName, productPrice, productQuantity, shoppingCart, setShoppingCart }) => {
   const { removeToShoppingCart, updateTotalPrice } = useContext(ShoppingCartContext);
-  const [unitAmount, setUnitAmount] = useState(1);
-  const [subTotalPrice, setSubTotalPrice] = useState(productPrice);
-  const [previousSubPrice, setPreviousSubPrice] = useState(0);
+  const [subTotalPrice, setSubTotalPrice] = useState(productPrice * productQuantity);
+
+  useEffect(() => {
+    setSubTotalPrice(productPrice * productQuantity);
+  }, [productQuantity, productPrice]);
 
   const AddUnit = () => {
-    const amount = unitAmount + 1;
-    setUnitAmount(amount);
-    setPreviousSubPrice(subTotalPrice);
-    const newPrice = productPrice * amount;
-    setSubTotalPrice(newPrice);
+    setShoppingCart(shoppingCart.map((item) =>
+      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+    ));
   };
 
   const SubstractUnit = () => {
-    if (unitAmount > 1) {
-      const amount = unitAmount - 1;
-      setUnitAmount(amount);
-      setPreviousSubPrice(subTotalPrice);
-      const newPrice = productPrice * amount;
-      setSubTotalPrice(newPrice);
+    if (productQuantity > 1) {
+      setShoppingCart(shoppingCart.map((item) =>
+        item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item
+      ));
     }
   };
 
   const onDeleteClickHandler = () => {
+    const updatedCart = shoppingCart.filter((item) => item.id !== itemId);
+    setShoppingCart(updatedCart);
     removeToShoppingCart(itemId);
+    updateTotalPrice();
   };
 
-  /* useEffect(() => {
-    console.log(`Se agregó el item ${productName}`)
-    updateTotalPrice(previousSubPrice, subTotalPrice)
-  }, [subTotalPrice]) */
+  useEffect(() => {
+    updateTotalPrice();
+  }, [subTotalPrice, shoppingCart]);
 
   return (
-    <div className="d-flex w-75 border border-secondary rounded my-3 mx-auto align-items-center bg-success bg-opacity-10">
+    <div className="d-flex w-75 border border-secondary rounded my-3 mx-auto align-items-center bg-opacity-10 p-1" style={{backgroundColor:"#FDFDFD"}}>
       <div className="w-25 d-flex align-items-center gap-3">
         <img
           className="rounded m-2"
-          style={{ height: "75px", width: "110px" }}
+          style={{ height: "85px", width: "120px" }}
           src={imageUrl !== "" ? imageUrl : "https://bit.ly/47NylZk"}
           alt=""
         />
         <h3 className="text-wrap">{productName}</h3>
       </div>
       <UnitCounter
-        amountDisplay={unitAmount}
+        amountDisplay={productQuantity}
         addUnit={AddUnit}
         substractUnit={SubstractUnit}
       />
@@ -70,5 +70,3 @@ const ShoppingCartItem = ({ itemId, imageUrl, productName, productPrice }) => {
 };
 
 export default ShoppingCartItem;
-
-//solucionar lo del visualizador del precio total del carrito.
