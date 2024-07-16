@@ -1,5 +1,7 @@
 import { useState, createContext, useEffect, useContext } from "react";
 import { AuthenticationContext } from "../authentication/UserAuthenticationContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ShoppingCartContext = createContext();
 
@@ -107,16 +109,19 @@ export const ShoppingCartContextProvider = ({ children }) => {
       });
       if (response.ok) {
         emptyShoppingCart()
+        toast.success("Se creó su pedido!")
+
       } else {
-        console.error('Error al agregar orden');
+        toast.error("Hubo un error creando su pedido.")
       }
     } catch (error) {
-      console.error('Error al agregar orden:', error);
+      console.error(error);
     }
 
   };
 
   return (
+    
     <ShoppingCartContext.Provider
       value={{
         setShoppingCart,
