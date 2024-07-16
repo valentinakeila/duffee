@@ -93,7 +93,7 @@ export const ShoppingCartContextProvider = ({ children }) => {
 
   const confirmOrder = async (e) => {
     const newOrder = {shoppingCart,
-      totalPrice: totalPrice
+      totalPrice: totalPrice,userId: currentUser.id
     }
 
     try {

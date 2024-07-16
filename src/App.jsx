@@ -19,6 +19,7 @@ import Unauthorized from './components/unauthorized/Unauthorized';
 import InDevelopPage from './components/inDevelop/InDevelopPage';
 import FormPage from './pages/form/FormPage';
 import OrdersAdmin from "./pages/ordersAdmin/OrdersAdmin"
+import OrdersUser from './pages/ordersUser/OrdersUser';
 
 function App() {
 
@@ -40,8 +41,8 @@ function App() {
           path: "/user/shoppingCart", element: <ShoppingCartPage/>
         },
         { 
-          path: "/user/orderList", element: <InDevelopPage sectionName={"user/orderList"}/>
-        }
+          path: "/user/orderList", element: <OrdersUser/>
+        },
       ]    
     },
     { path: "/admin", element: <ProtectedRoutesAdmin />,
