@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ItemCard from './ItemCard';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ItemList({ categoryName, categoryId }) {
   const [items, setItems] = useState([]);
@@ -22,13 +24,15 @@ function ItemList({ categoryName, categoryId }) {
 
   useEffect(() => {
     GetAllItems();
-  }, [categoryId]); // Dependencia en categoryId para volver a cargar si cambia
+  }, [categoryId]);
 
   return (
     <div
       className="d-flex flex-column align-items-center justify-content-center mb-5 mt-5"
       style={{ height: 'fit-content', width: '100%', gap: '5%' }}
     >
+      
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" transition: Bounce/>
       <div className='w-100 d-flex' style={{ height: '5%' }}>
         <div style={{ width: '41%', borderBottom: '3px solid #dd8541', marginBottom: '1.4rem' }}></div>
         <span className='text-center mt-5 display-5 font-italic' style={{ width: '18%', color: '#dd8541', fontStyle: 'italic', fontWeight: 'normal' }}>
