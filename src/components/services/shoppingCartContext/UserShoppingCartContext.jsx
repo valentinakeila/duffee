@@ -6,53 +6,55 @@ export const ShoppingCartContext = createContext();
 export const ShoppingCartContextProvider = ({ children }) => {
   const { currentUser } = useContext(AuthenticationContext);
   const [shoppingCart, setShoppingCart] = useState([]);
-  const [auxString, setAuxString] = useState("");
+  const [currentCartName, setCurrentCartName] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     if (currentUser != null) {
-      const auxNewArray = JSON.parse(
-        localStorage.getItem(`cartOf_${currentUser.email}`)
+      const auxCartName = `cartOf_${currentUser.email}`;
+      setCurrentCartName(auxCartName);
+      let auxNewCart = JSON.parse(
+        localStorage.getItem(auxCartName)
       );
-      setShoppingCart(auxNewArray);
-      setAuxString(`cartOf_${currentUser.email}`);
-      console.log("carrito personal seleccionado!");
-    } else {
-      if (shoppingCart.length == 0) {
-        localStorage.removeItem(auxString);
-        console.log("Se borro el carrito vacio al cerrar sesion");
+      if (auxNewCart == null) {
+        auxNewCart = [];
+        setShoppingCart(auxNewCart);
+        localStorage.setItem(auxCartName, JSON.stringify(auxNewCart));
+      } else {
+        setShoppingCart(auxNewCart);
       }
+    } else {
+      /* if (currentCartName != null) {
+        let auxNewCart = JSON.parse(localStorage.getItem(currentCartName));
+        console.log(auxNewCart);
+        console.log(auxNewCart.lenght);
+        if (auxNewCart.lenght) {
+          localStorage.removeItem(currentCartName);
+        }
+      } */
+      setCurrentCartName("");
       setShoppingCart([]);
-      console.log("no hay carrito seleccionado!");
     }
   }, [currentUser]);
 
-  console.log(`carrito actual: ${auxString}`);
-  console.log("contenido del carrito actual:");
-  console.log(shoppingCart);
-  //console.log(shoppingCart.length);
+  console.log(`valor de currentCartName: ${currentCartName}`); 
+  console.log(`contenido del carrito: ${shoppingCart}`);
 
   const addToShoppingCart = (item) => {
     console.log("add clicked");
-    if (shoppingCart != null) {
+    if (shoppingCart != []) {
       if (shoppingCart.includes(item)) {
         return false;
       } else {
         const auxNewArray = [item, ...shoppingCart];
         setShoppingCart(auxNewArray);
-        localStorage.setItem(
-          `cartOf_${currentUser.email}`,
-          JSON.stringify(auxNewArray)
-        );
+        localStorage.setItem(currentCartName, JSON.stringify(auxNewArray));
         return true;
       }
     } else {
       const auxNewArray = [item];
       setShoppingCart(auxNewArray);
-      localStorage.setItem(
-        `cartOf_${currentUser.email}`,
-        JSON.stringify(auxNewArray)
-      );
+      localStorage.setItem(currentCartName, JSON.stringify(auxNewArray));
       return true;
     }
   };
@@ -62,17 +64,19 @@ export const ShoppingCartContextProvider = ({ children }) => {
       (item) => item.id != itemId
     );
     setShoppingCart(auxNewFilteredArray);
-    console.log(`en el carrito quedan: ${auxNewFilteredArray} `);
-    localStorage.setItem(
-      `cartOf_${currentUser.email}`,
-      JSON.stringify(auxNewFilteredArray)
-    );
+    localStorage.setItem(currentCartName, JSON.stringify(auxNewFilteredArray));
   };
 
   const emptyShoppingCart = () => {
-    console.log("vaciando");
-    setShoppingCart([]);
-    localStorage.setItem(`cartOf_${currentUser.email}`, JSON.stringify([]));
+    const auxNewArray = [];
+    setShoppingCart(auxNewArray);
+    localStorage.setItem(currentCartName, JSON.stringify(auxNewArray));
+  };
+
+  const updateTotalPrice = (prevNumber, currentNumber) => {
+    let auxTotalPrice = totalPrice;
+    auxTotalPrice = auxTotalPrice - prevNumber + currentNumber;
+    setTotalPrice(auxTotalPrice);
   };
 
   const confirmOrder = () => {};
@@ -81,12 +85,18 @@ export const ShoppingCartContextProvider = ({ children }) => {
     <ShoppingCartContext.Provider
       value={{
         shoppingCart,
+        totalPrice,
         addToShoppingCart,
         removeToShoppingCart,
         emptyShoppingCart,
+        updateTotalPrice
       }}
     >
       {children}
     </ShoppingCartContext.Provider>
   );
 };
+
+//ver lo de borrar del localStorage el carrito vacío.
+//ver lo de agregar productos repetidos al carrito.
+//si se repiten productos en el carrito ver lo del child id's
