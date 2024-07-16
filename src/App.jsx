@@ -18,6 +18,7 @@ import ProtectedRoutesAdmin from './components/protectedRoutes/ProtectedRoutesAd
 import Unauthorized from './components/unauthorized/Unauthorized';
 import InDevelopPage from './components/inDevelop/InDevelopPage';
 import FormPage from './pages/form/FormPage';
+import OrdersAdmin from "./pages/ordersAdmin/OrdersAdmin"
 
 function App() {
 
@@ -52,7 +53,7 @@ function App() {
           path: "/admin/menu/:id", element: <MenuItemsAdmin/>
         },
         { 
-          path: "/admin/orderList", element: <InDevelopPage sectionName={"admin/orderList"}/>
+          path: "/admin/orderList", element: <OrdersAdmin/>
         }
       ]
     },

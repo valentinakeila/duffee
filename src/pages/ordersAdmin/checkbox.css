@@ -1,0 +1,5 @@
+.form-check-input:checked {
+    background-color: #CAB4FF; /* Cambia el color de fondo cuando está seleccionado */
+    border-color: #CAB4FF; /* Cambia el color del borde */
+  }
+  
