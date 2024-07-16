@@ -51,7 +51,9 @@ const LoginForm = () => {
     setUserPassword("");
 
     if (succesUser) {
-      if (succesUser.adminRole) {
+      if (succesUser.isSysAdmin) {
+        navigate("/sysadmin/menu");
+      } else if (succesUser.adminRole) {
         navigate("/admin/menu");
       } else {
         navigate("/menu");

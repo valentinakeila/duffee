@@ -9,7 +9,7 @@ function Navigation() {
 
   return (
     <nav className="d-flex bg-black text-light" style={{ height: "5rem" }}>
-      <style jsx>{`
+      <style>{`
         .hover-color:hover {
           color: #ffc091 !important;
           //esta etiqueta te deja poner estilos css directamente en el componente

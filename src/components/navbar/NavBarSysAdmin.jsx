@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/duffee-logo.png";
+import { AuthenticationContext } from '../../components/services/authentication/UserAuthenticationContext';
+import { useNavigate } from "react-router-dom";
+
+
+
 
 function NavBarSysAdmin() {
+  const { handleLogout } = useContext(AuthenticationContext);
+  const navigate = useNavigate();
+
+  const handleLogoutAndNavigate = () => {
+    handleLogout();
+    navigate("/");
+  };
   return (
     <nav className="d-flex bg-black text-light" style={{ height: "5rem" }}>
-      <style jsx>{`
+      <style>{`
         .hover-color:hover {
           color: #ffc091 !important;
           //esta etiqueta te deja poner estilos css directamente en el componente
@@ -47,6 +59,7 @@ function NavBarSysAdmin() {
         <a
           href=""
           className="text-white text-decoration-none fs-3 pe-5 hover-color"
+          onClick={handleLogoutAndNavigate}
         >
           Cerrar sesión
         </a>

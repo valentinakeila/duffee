@@ -16,7 +16,7 @@ function NavBarAdmin() {
 
   return (
     <nav className="d-flex bg-black text-light" style={{ height: "5rem" }}>
-      <style jsx>{`
+      <style>{`
         .hover-color:hover {
           color: #ffc091 !important;
           //esta etiqueta te deja poner estilos css directamente en el componente
@@ -32,7 +32,7 @@ function NavBarAdmin() {
           className="text-white text-decoration-none fs-3 pe-5 m-5 hover-color"
           onClick={() => navigate("/")}
         >
-          Quines somos
+          Quienes somos
         </a>
       </div>
       <div className="col-4 d-flex justify-content-center bg-red">
