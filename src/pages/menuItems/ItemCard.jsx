@@ -1,15 +1,29 @@
 import { useContext } from "react";
 import "./cardInfo.css";
 import { ToastContainer, toast } from "react-toastify";
-import { ShoppingCartContext } from "../../components/services/shoppingCartContext/UserShoppingCartContext";
 import "react-toastify/dist/ReactToastify.css";
+import { ShoppingCartContext } from "../../components/services/shoppingCartContext/UserShoppingCartContext";
+
 
 function ItemCard({ item }) {
-  const { addToShoppingCart } = useContext(ShoppingCartContext);
+  const { addToShoppingCart,shoppingCart } = useContext(ShoppingCartContext);
 
   const clickHandler = () => {
     const cartFlag = addToShoppingCart(item);
-    //toast.success("Se agregó al pedido!");
+
+    let itemInCartFlag = false
+
+    shoppingCart.map((cartItem) => {
+      if (cartItem.name == item.name) {
+        toast.error("Ya existe en el carrito")
+        itemInCartFlag = true
+      }
+    })
+
+    if (itemInCartFlag === false) {
+      toast.success("Agregado con exito!")
+    }
+
   };
 
   const encodedUrl = encodeURI(item.imageUrl); // la imagen no se ve sino XD
@@ -27,21 +41,8 @@ function ItemCard({ item }) {
         backgroundPosition: "center",
       }}
     >
-      <ToastContainer
-        style={{ marginTop: "4rem" }}
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        transition:Bounce
-      />
 
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" transition: Bounce/>
       <div className="w-100 h-50 d-flex justify-content-end">
         <span
           className="p-3 display-6 fst-italic fw-bolder"

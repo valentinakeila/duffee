@@ -4,6 +4,8 @@ import ShoppingCartItem from "./ShoppingCartItem";
 import { ShoppingCartContext } from "../services/shoppingCartContext/UserShoppingCartContext";
 import NavBarUser from "../navbar/NavBarUser"
 import Footer from "../footer/Footer"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ShoppingCartPage = () => {
   const { shoppingCart,setShoppingCart, totalPrice ,emptyShoppingCart,confirmOrder } = useContext(ShoppingCartContext);
@@ -24,6 +26,7 @@ const ShoppingCartPage = () => {
   return (
     <div className="d-flex-column bg-opacity-10" style={{backgroundColor:"#FFFFFF"}}>
       <NavBarUser></NavBarUser>
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" transition: Bounce/>
       <div className="py-5 fs-1 fw-bold text-center text-dark mb-5 mt-5">
         <div className='w-100 d-flex mb-5' style={{height:"5%",}}>
             <div style={{width:"35%",borderBottom:"4px solid #B9694F",marginBottom:"1.4rem"}}></div>
