@@ -1,32 +1,40 @@
 import { Button } from "react-bootstrap";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import UnitCounter from "./UnitCounter";
 import { ShoppingCartContext } from "../services/shoppingCartContext/UserShoppingCartContext";
 
 const ShoppingCartItem = ({ itemId, imageUrl, productName, productPrice }) => {
-  const { removeToShoppingCart } = useContext(ShoppingCartContext);
+  const { removeToShoppingCart, updateTotalPrice } = useContext(ShoppingCartContext);
   const [unitAmount, setUnitAmount] = useState(1);
-  const [subtotalPrice, setSubtotalPrice] = useState(productPrice);
+  const [subTotalPrice, setSubTotalPrice] = useState(productPrice);
+  const [previousSubPrice, setPreviousSubPrice] = useState(0);
 
   const AddUnit = () => {
     const amount = unitAmount + 1;
     setUnitAmount(amount);
+    setPreviousSubPrice(subTotalPrice);
     const newPrice = productPrice * amount;
-    setSubtotalPrice(newPrice);
+    setSubTotalPrice(newPrice);
   };
 
   const SubstractUnit = () => {
     if (unitAmount > 1) {
       const amount = unitAmount - 1;
       setUnitAmount(amount);
+      setPreviousSubPrice(subTotalPrice);
       const newPrice = productPrice * amount;
-      setSubtotalPrice(newPrice);
+      setSubTotalPrice(newPrice);
     }
   };
 
   const onDeleteClickHandler = () => {
     removeToShoppingCart(itemId);
   };
+
+  /* useEffect(() => {
+    console.log(`Se agregó el item ${productName}`)
+    updateTotalPrice(previousSubPrice, subTotalPrice)
+  }, [subTotalPrice]) */
 
   return (
     <div className="d-flex w-75 border border-secondary rounded my-3 mx-auto align-items-center bg-success bg-opacity-10">
@@ -51,7 +59,7 @@ const ShoppingCartItem = ({ itemId, imageUrl, productName, productPrice }) => {
         </div>
         <div className="text-center">
           <h6 className="text-success">Subtotal</h6>
-          <h5>{`$ ${subtotalPrice}`}</h5>
+          <h5>{`$ ${subTotalPrice}`}</h5>
         </div>
         <Button variant="danger" onClick={onDeleteClickHandler}>
           ELIMINAR
@@ -62,3 +70,5 @@ const ShoppingCartItem = ({ itemId, imageUrl, productName, productPrice }) => {
 };
 
 export default ShoppingCartItem;
+
+//solucionar lo del visualizador del precio total del carrito.

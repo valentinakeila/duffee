@@ -38,6 +38,7 @@ function NavBarUser() {
           src={logo}
           alt="Duffee logo"
           className="z-3"
+          onClick={() => navigate("/")}
           style={{
             width: "9rem",
             alignSelf: "center",

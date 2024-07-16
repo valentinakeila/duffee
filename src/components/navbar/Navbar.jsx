@@ -30,6 +30,7 @@ function Navigation() {
           href="#"
           alt="Duffee Logo"
           className="z-3"
+          onClick={() => navigate("/")}
           style={{ width: "9rem", alignSelf: "center", position: "absolute", marginTop: "4.2rem" }}
         />
       </div>

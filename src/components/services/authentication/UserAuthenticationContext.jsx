@@ -6,8 +6,8 @@ const storedUser = JSON.parse(localStorage.getItem("storedUser"));
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(storedUser);
-  console.log("usuario seteado al inicio:");
-  console.log(currentUser);
+  //console.log("usuario seteado al inicio:");
+  //console.log(currentUser);
 
   const handleLogin = async (email, password) => {
     const loginCredentials = {
