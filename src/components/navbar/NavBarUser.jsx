@@ -48,12 +48,14 @@ function NavBarUser() {
         />
       </div>
       <div className="col-4 d-flex align-items-center ps-5 justify-content-end gap-5">
-        <a href="#" className="text-white text-decoration-none fs-3 hover-color">
+        <a href="#" className="text-white text-decoration-none fs-3 hover-color"
+        onClick={() => navigate("/user/orderList")}>
           Pedidos
         </a>
         <button
           className="btn btn-link text-white p-0 hover-color"
           style={{ width: "2.5rem", height: "2.8rem" }}
+          onClick={() => navigate("/user/shoppingCart")}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

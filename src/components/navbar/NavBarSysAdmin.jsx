@@ -23,13 +23,15 @@ function NavBarSysAdmin() {
         }
       `}</style> 
       <div className="col-4 d-flex align-items-center ps-5">
-        <a href="" className="text-white text-decoration-none fs-3 hover-color">
+        <a href="" className="text-white text-decoration-none fs-3 hover-color"
+        onClick={() => navigate("/admin/menu")}>
           Nuestra Carta
         </a>
         <a
           href=""
           className="text-white text-decoration-none fs-3 pe-5 m-5 hover-color"
-        >
+          onClick={() => navigate("/")}>
+        
           Quienes somos
         </a>
       </div>
@@ -49,7 +51,8 @@ function NavBarSysAdmin() {
         />
       </div>
       <div className="col-4 d-flex align-items-center ps-5 justify-content-end gap-5">
-        <a href="" className="text-white text-decoration-none fs-3 hover-color">
+        <a href="" className="text-white text-decoration-none fs-3 hover-color"
+        onClick={() => navigate("/admin/orderList")}>
           Pedidos
         </a>
         <a href="" className="text-white text-decoration-none fs-3 hover-color">

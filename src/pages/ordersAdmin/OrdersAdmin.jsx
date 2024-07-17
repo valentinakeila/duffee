@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AuthenticationContext } from "../../components/services/authentication/UserAuthenticationContext";
 import { useContext } from "react";
 import NavBarAdmin from '../../components/navbar/NavBarAdmin'
+import NavBarSysAdmin from "../../components/navbar/NavBarSysAdmin";
 import Footer from '../../components/footer/Footer'
 import OrdersList from './OrdersList'
 
@@ -35,10 +36,18 @@ function OrdersAdmin() {
     
     return () => clearInterval(intervalId); // Limpia el intervalo al desmontar el componente
   }, []);
-
+  
+  let navBarComponent;
+  if (currentUser === null) {
+    navBarComponent = <Navigation />;
+  } else if (currentUser.isSysAdmin) {
+    navBarComponent = <NavBarSysAdmin />;
+  } else if (currentUser.adminRole) {
+    navBarComponent = <NavBarAdmin />;
+  } 
   return (
     <div>
-      <NavBarAdmin/>
+      {navBarComponent}
       <OrdersList orders={orders} GetAllOrders={GetAllOrders}/>
       <Footer/>
     </div>

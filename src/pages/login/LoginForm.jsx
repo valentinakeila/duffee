@@ -52,11 +52,11 @@ const LoginForm = () => {
 
     if (succesUser) {
       if (succesUser.isSysAdmin) {
-        navigate("/sysadmin/menu");
+        navigate("/");
       } else if (succesUser.adminRole) {
-        navigate("/admin/menu");
+        navigate("/");
       } else {
-        navigate("/menu");
+        navigate("/");
       }
     } else {
       alert("Alguno de los datos ingresados no es correcto.");
