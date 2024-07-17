@@ -11,7 +11,7 @@ const ProtectedRoutesAdmin = () => {
     return <Navigate to="/login" replace />;
   }
     //si está logueado, pero no es Admin, le muestrá la pagína "Unauthorized"
-  if (!currentUser.adminRole) {
+  if (!currentUser.adminRole && !currentUser.isSysAdmin) {
     //asociar el Navigate to= con el nombre de ruta correspondiente
     return <Navigate to="/unauthorized" replace />;
   }

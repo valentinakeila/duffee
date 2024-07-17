@@ -7,10 +7,21 @@ import React, { useContext } from 'react';
 
 function Menu({ menuCategories }) {
   const { currentUser } = useContext(AuthenticationContext);
+  
 
+  let navBarComponent;
+  if (!currentUser) {
+    navBarComponent = <Navigation />;
+  } else if (currentUser.isSysAdmin) {
+    navBarComponent = <NavBarSysAdmin />;
+  } else if (currentUser.adminRole) {
+    navBarComponent = <NavBarAdmin />;
+  } else {
+    navBarComponent = <NavBarUser />;
+  }
   return (
     <>
-      {currentUser ? <NavBarUser /> : <Navigation />}
+      {navBarComponent}
         <MenuList/>
         <Footer/> 
     </>

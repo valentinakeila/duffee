@@ -14,10 +14,19 @@ function MenuItems() {
   const navigate = useNavigate();
 
   const { categoryName, categoryId} = location.state.category
-
+  let navBarComponent;
+  if (currentUser === null) {
+    navBarComponent = <Navigation />;
+  } else if (currentUser.isSysAdmin) {
+    navBarComponent = <NavBarSysAdmin />;
+  } else if (currentUser.adminRole) {
+    navBarComponent = <NavBarAdmin />;
+  } else{
+    navBarComponent = <NavBarUser/>
+  }
   return (
     <div>
-        {currentUser ? <NavBarUser /> : <Navigation />}
+       {navBarComponent}
         <ItemList categoryName={categoryName} categoryId={categoryId}/>
         <Footer/>
     </div>

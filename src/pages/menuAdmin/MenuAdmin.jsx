@@ -43,11 +43,21 @@ function MenuAdmin() {
     console.log("Is SysAdmin:", currentUser?.isSysAdmin);
   }, [currentUser]);
 
+  
+
+  let navBarComponent;
+  if (currentUser === null) {
+    navBarComponent = <Navigation />;
+  } else if (currentUser.isSysAdmin) {
+    navBarComponent = <NavBarSysAdmin />;
+  } else if (currentUser.adminRole) {
+    navBarComponent = <NavBarAdmin />;
+  } 
 
   
   return (
     <>
-        {currentUser.isSysAdmin ? <NavBarAdmin /> : <NavBarSysAdmin /> }
+        {navBarComponent}
         <AddCategory setShowCreateForm={setShowCreateForm} showEditForm={showEditForm}/>
 
         {showCreateForm === true ? (<AddCategoryForm menuCategories={menuCategories} setMenuCategories={setMenuCategories} GetAllCategories={GetAllCategories} showCreateForm={showCreateForm} setShowCreateForm={setShowCreateForm}/>) : ("")}

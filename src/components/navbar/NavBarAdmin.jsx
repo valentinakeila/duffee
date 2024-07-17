@@ -24,7 +24,7 @@ function NavBarAdmin() {
       `}</style> 
       <div className="col-4 d-flex align-items-center ps-5">
         <a href="" className="text-white text-decoration-none fs-3 hover-color"
-         onClick={() => navigate("/menu")}>
+         onClick={() => navigate("/admin/menu")}>
           Nuestra Carta
         </a>
         <a
@@ -52,7 +52,7 @@ function NavBarAdmin() {
       </div>
       <div className="col-4 d-flex align-items-center ps-5 justify-content-end gap-5">
         <a href="" className="text-white text-decoration-none fs-3 hover-color"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/admin/orderList")}
         >
           Pedidos
         </a>
