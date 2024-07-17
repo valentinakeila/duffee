@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-light text-end me-2">
-        Duffee 2024 © | All Rigths Reserved
+        Duffee 2024 © | All Rights Reserved
       </div>
     </div>
   );
