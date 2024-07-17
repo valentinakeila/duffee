@@ -55,7 +55,8 @@ function NavBarSysAdmin() {
         onClick={() => navigate("/admin/orderList")}>
           Pedidos
         </a>
-        <a href="" className="text-white text-decoration-none fs-3 hover-color">
+        <a href="" className="text-white text-decoration-none fs-3 hover-color"
+         onClick={() => navigate("/admin/userPage")}>
           Usuarios
         </a>
         

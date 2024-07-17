@@ -20,6 +20,7 @@ import InDevelopPage from './components/inDevelop/InDevelopPage';
 import FormPage from './pages/form/FormPage';
 import OrdersAdmin from "./pages/ordersAdmin/OrdersAdmin"
 import OrdersUser from './pages/ordersUser/OrdersUser';
+import UserPage from './pages/sysAdmin/UserPage';
 
 function App() {
 
@@ -55,9 +56,13 @@ function App() {
         },
         { 
           path: "/admin/orderList", element: <OrdersAdmin/>
-        }
+        },
+
+        { path: "/admin/userPage", element: <UserPage /> },
+
       ]
     },
+   
   ]);
 
   
