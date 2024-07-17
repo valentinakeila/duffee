@@ -19,8 +19,8 @@ function Landing() {
   return (
     <>
       {currentUser ? <NavBarUser /> : <Navigation />}
-      <div className="d-flex mt-4" style={{position:"absolute",zIndex:2,marginLeft:"2rem"}}>
-        <button onClick={handleLanguageSwitch} className="btn btn-primary">
+      <div className="d-flex mt-1" style={{position:"absolute",zIndex:2,marginLeft:"2rem"}}>
+        <button onClick={handleLanguageSwitch} className="mt-5 fs-5 text-white rounded py-2 fw-bold" style={{backgroundColor:"#FFC091",color:"#FFFFFF",border:"solid 1px white"}}>
           {isLatin ? "Cambiar a Español" : "Translate to Latin"}
         </button>
       </div>
