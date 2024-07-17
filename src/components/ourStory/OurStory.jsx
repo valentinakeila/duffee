@@ -1,7 +1,14 @@
 import React from "react";
 import duffeGif from "./duffeGif.mp4";
+import useLatinTranslator from "../custom/useLatinTranslator";
 
-function OurStory() {
+function OurStory({ isLatin }) {
+  const title = useLatinTranslator("Duffee, nuestra historia:", isLatin);
+  const description = useLatinTranslator(
+    "Fundada en 1922 por un grupo de programadores apasionados por el café, Duffee nació con la misión de ofrecer café de alta calidad en un entorno donde las personas puedan relajarse, trabajar y socializar. La cafetería ha crecido gracias a su compromiso con la excelencia y su enfoque en la comunidad local. Duffee en un refugio digital para trabajadores remotos y freelancers, haciendo que la misión de la cafetería de ser un lugar para trabajar, socializar y relajarse sea más relevante que nunca.",
+    isLatin
+  );
+
   return (
     <div
       className="d-flex justify-content-center gap-4 p-4 align-items-center "
@@ -37,19 +44,9 @@ function OurStory() {
 
       <div className="col-md-7 d-flex flex-column gap-5">
         <h2 className="featurette-heading fw-normal lh-1 display-1">
-          Duffee, <span className="text-body-secondary">nuestra historia:</span>
+          {title}
         </h2>
-        <p className="lead fs-3 ">
-          {" "}
-          Fundada en 1922 por un grupo de programadores apasionados por el café,{" "}
-          <span className="fw-bold">Duffee</span> nació con la misión de ofrecer
-          café de alta calidad en un entorno donde las personas puedan
-          relajarse, trabajar y socializar. La cafetería ha crecido gracias a su
-          compromiso con la excelencia y su enfoque en la comunidad local.
-          Duffee en un refugio digital para trabajadores remotos y freelancers,
-          haciendo que la misión de la cafetería de ser un lugar para trabajar,
-          socializar y relajarse sea más relevante que nunca.
-        </p>
+        <p className="lead fs-3">{description}</p>
       </div>
     </div>
   );

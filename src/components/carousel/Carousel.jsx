@@ -5,6 +5,7 @@ import carousel1 from "./diferentes-tipos-de-cafes.jpg";
 import carousel2 from "./empty-cafe.webp";
 import carousel3 from "./cafetorta.jpg";
 import { useNavigate } from "react-router-dom";
+import useLatinTranslator from "../custom/useLatinTranslator";
 
 const imageStyle = {
   maxHeight: '80vh',
@@ -50,6 +51,7 @@ const buttonStyle = {
   backgroundColor: '#fcbb79',
   color: 'black',
 };
+
 const blackStripStyle = {
   backgroundColor: 'black',
   color: 'white',
@@ -63,64 +65,73 @@ const blackStripParagraphStyle = {
   fontSize: '1.5em',
 };
 
-function AppCarousel() {
+function AppCarousel({ isLatin }) {
   const navigate = useNavigate();
+  
+  const welcomeText = useLatinTranslator("¡Bienvenidos!", isLatin);
+  const loginButtonText = useLatinTranslator("Iniciar sesión", isLatin);
+  const menuText = useLatinTranslator("Visite nuestro menú", isLatin);
+  const menuButtonText = useLatinTranslator("Menú", isLatin);
+  const blackStripText = useLatinTranslator(
+    "¡Descubre la mejor selección de cafés y delicias en Duffee! Visítanos hoy y vive una experiencia única.",
+    isLatin
+  );
+
   return (
     <>
-    <Carousel interval={2000} pause={false} controls={false} indicators={false}>
-      <Carousel.Item>
-        <div style={{ position: 'relative' }}>
-          <img
-            className="d-block w-100"
-            src={carousel1}
-            alt="First slide"
-            style={imageStyle}
-          />
-          <div style={overlayStyle}></div>
-          <Carousel.Caption style={captionStyle}>
-            <p style={duffeeStyle}>Duffee</p>
-            
-          </Carousel.Caption>
-        </div>
-      </Carousel.Item>
-      <Carousel.Item>
-        <div style={{ position: 'relative' }}>
-          <img
-            className="d-block w-100"
-            src={carousel2}
-            alt="Second slide"
-            style={imageStyle}
-          />
-          <div style={overlayStyle}></div>
-          <Carousel.Caption style={captionStyle}>
-          <p style={paragraphStyle}>¡Bienvenidos!</p>
-          <button style={buttonStyle} onClick={() => navigate("/login")}>
-                Iniciar sesión
+      <Carousel interval={2000} pause={false} controls={false} indicators={false}>
+        <Carousel.Item>
+          <div style={{ position: 'relative' }}>
+            <img
+              className="d-block w-100"
+              src={carousel1}
+              alt="First slide"
+              style={imageStyle}
+            />
+            <div style={overlayStyle}></div>
+            <Carousel.Caption style={captionStyle}>
+              <p style={duffeeStyle}>Duffee</p>
+            </Carousel.Caption>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div style={{ position: 'relative' }}>
+            <img
+              className="d-block w-100"
+              src={carousel2}
+              alt="Second slide"
+              style={imageStyle}
+            />
+            <div style={overlayStyle}></div>
+            <Carousel.Caption style={captionStyle}>
+              <p style={paragraphStyle}>{welcomeText}</p>
+              <button style={buttonStyle} onClick={() => navigate("/login")}>
+                {loginButtonText}
               </button>
-          </Carousel.Caption>
-        </div>
-      </Carousel.Item>
-      <Carousel.Item>
-        <div style={{ position: 'relative' }}>
-          <img
-            className="d-block w-100"
-            src={carousel3}
-            alt="Third slide"
-            style={imageStyle}
-          />
-          <div style={overlayStyle}></div>
-          <Carousel.Caption style={captionStyle}>
-            <p style={paragraphStyle}>Visite nuestro menú</p>
-            <button style={buttonStyle} onClick={() => navigate("/menu")}>
-                Menú
+            </Carousel.Caption>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div style={{ position: 'relative' }}>
+            <img
+              className="d-block w-100"
+              src={carousel3}
+              alt="Third slide"
+              style={imageStyle}
+            />
+            <div style={overlayStyle}></div>
+            <Carousel.Caption style={captionStyle}>
+              <p style={paragraphStyle}>{menuText}</p>
+              <button style={buttonStyle} onClick={() => navigate("/menu")}>
+                {menuButtonText}
               </button>
-          </Carousel.Caption>
-        </div>
-      </Carousel.Item>
-    </Carousel>
-    <div style={blackStripStyle}>
+            </Carousel.Caption>
+          </div>
+        </Carousel.Item>
+      </Carousel>
+      <div style={blackStripStyle}>
         <p style={blackStripParagraphStyle}>
-          ¡Descubre la mejor selección de cafés y delicias en Duffee! Visítanos hoy y vive una experiencia única.
+          {blackStripText}
         </p>
       </div>
     </>
