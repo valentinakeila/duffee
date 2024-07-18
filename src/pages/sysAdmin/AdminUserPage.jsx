@@ -26,7 +26,7 @@ function AdminUserPage() {
   };
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser.isSysAdmin) {
       getAllUsers();
     }
   }, [currentUser]);
@@ -43,7 +43,7 @@ function AdminUserPage() {
   return (
     <>
       {navBarComponent}
-      <Users users={users} setUsers={setUsers} getAllUsers={getAllUsers} currentUser={currentUser} />
+      <Users users={users} setUsers={setUsers} getAllUsers={getAllUsers} />
       <Footer />
     </>
   );
