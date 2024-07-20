@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import carousel1 from "./diferentes-tipos-de-cafes.jpg";
 import carousel2 from "./empty-cafe.webp";
 import carousel3 from "./cafetorta.jpg";
+import duffeelogo from './duffeelogo.png';
 import { useNavigate } from "react-router-dom";
 import useLatinTranslator from "../custom/useLatinTranslator";
 
@@ -38,9 +39,12 @@ const paragraphStyle = {
 };
 
 const duffeeStyle = {
-  fontSize: '10em',
-  fontStyle: 'italic',
-  color: '#fcbb79', 
+  
+  height: '600px',
+  transform: 'translate(-51%, -65%)', 
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
 };
 
 const buttonStyle = {
@@ -90,7 +94,7 @@ function AppCarousel({ isLatin }) {
             />
             <div style={overlayStyle}></div>
             <Carousel.Caption style={captionStyle}>
-              <p style={duffeeStyle}>Duffee</p>
+              <img src={duffeelogo} alt="Duffee Logo" style={duffeeStyle} />
             </Carousel.Caption>
           </div>
         </Carousel.Item>
