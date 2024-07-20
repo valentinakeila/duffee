@@ -1,4 +1,3 @@
-
 import NavBarAdmin from "../../components/navbar/NavBarAdmin";
 import NavBarSysAdmin from "../../components/navbar/NavBarSysAdmin";
 
@@ -13,6 +12,14 @@ import PhotosCarousel from "../../components/photosCarousel/PhotosCarousel";
 import { AuthenticationContext } from "../../components/services/authentication/UserAuthenticationContext";
 import NavBarUser from "../../components/navbar/NavBarUser";
 
+const buttonStyle = {
+  fontSize: '1.5em',
+  padding: '10px 20px',
+  border: 'none',
+  borderRadius: '20px',
+  backgroundColor: '#fcbb79',
+  color: 'black',
+};
 
 function Landing() {
   const { currentUser } = useContext(AuthenticationContext);
@@ -35,10 +42,9 @@ function Landing() {
 
   return (
     <>
-
       {navBarComponent}
-      <div className="d-flex mt-1" style={{position:"absolute",zIndex:2,marginLeft:"2rem"}}>
-        <button onClick={handleLanguageSwitch} className="mt-5 fs-5 text-white rounded py-2 px-1 fw-bold" style={{backgroundColor:"#FFC091",color:"#FFFFFF",border:"solid 1px white"}}>
+      <div className="d-flex mt-1" style={{ position: "absolute", zIndex: 2, marginLeft: "2rem" }}>
+        <button onClick={handleLanguageSwitch} className="mt-3" style={buttonStyle}>
           {isLatin ? "Cambiar a Español" : "Translate to Latin"}
         </button>
       </div>
