@@ -24,7 +24,7 @@ const ShoppingCartPage = () => {
   }, [shoppingCart]);
 
   return (
-    <div className="d-flex-column bg-opacity-10" style={{backgroundColor:"#FFFFFF"}}>
+    <div className="d-flex-column bg-opacity-10">
       <NavBarUser></NavBarUser>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" transition: Bounce/>
       <div className="py-5 fs-1 fw-bold text-center text-dark mb-5 mt-5">

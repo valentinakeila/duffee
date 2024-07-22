@@ -83,6 +83,7 @@ function EditItemForm({ setShowEditForm, categoryId, editId, setItems, GetAllIte
       desc,
       price: parseFloat(price),
       imageUrl,
+      quantity: 1,
       categorieId: categoryId,
     };
 

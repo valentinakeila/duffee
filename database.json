@@ -1,0 +1,359 @@
+{
+  "protectedResources": {
+    "users": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ],
+    "items": [
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ],
+    "categories": [
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ],
+    "orders": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+    ]
+  },
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Administrator",
+      "lastName": "",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "status": false,
+      "isSysAdmin": "admin",
+      "createdAt": 1609483221000,
+      "modifiedAt": 1609483221000
+    },
+    {
+      "id": 2,
+      "firstName": "Nicolas",
+      "lastName": "Cataldi",
+      "email": "nicolascataldi1@gmail.com",
+      "password": "nico123",
+      "status": true,
+      "isSysAdmin": true,
+      "createdAt": 1617440961000,
+      "modifiedAt": 1721274816483
+    },
+    {
+      "id": 3,
+      "firstName": "Valentina",
+      "lastName": "Garrido",
+      "email": "valen@gmail.com",
+      "password": "valen123",
+      "status": true,
+      "isSysAdmin": false,
+      "createdAt": 1615745961000,
+      "modifiedAt": 1721274600353
+    },
+    {
+      "firstName": "Manuel",
+      "lastName": "Cecarelli",
+      "email": "manuelcecarelli@gmail.com",
+      "password": "manu",
+      "createdAt": 1721250711946,
+      "modifiedAt": 1721274798591,
+      "id": 4,
+      "status": false,
+      "isSysAdmin": false
+    },
+    {
+      "firstName": "Alida",
+      "lastName": "Rodriguez",
+      "email": "alidav@hotmail.com",
+      "password": "hola",
+      "status": true,
+      "isSysAdmin": true,
+      "createdAt": 1721270792560,
+      "modifiedAt": 1721270884522,
+      "id": 5
+    }
+  ],
+  "categories": [
+    {
+      "name": "Desayunos",
+      "imageUrl": "https://images.unsplash.com/photo-1584450149783-8073785c47f9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "modifiedAt": 1720737985244,
+      "id": 1
+    },
+    {
+      "name": "Postres",
+      "imageUrl": "https://images.unsplash.com/photo-1561845730-208ad5910553?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "id": 4
+    },
+    {
+      "name": "Bebidas",
+      "imageUrl": "https://thumbs.dreamstime.com/b/shelf-store-soda-different-brands-coca-cola-schweppes-aluminum-cans-glass-bottles-various-sizes-beverage-308342964.jpg",
+      "modifiedAt": 1721657469505,
+      "id": 5
+    },
+    {
+      "name": "Para compartir",
+      "imageUrl": "https://i.ytimg.com/vi/XCENOkjqI8c/maxresdefault.jpg",
+      "id": 6
+    },
+    {
+      "name": "Almuerzos",
+      "imageUrl": "https://www.comedera.com/wp-content/uploads/2021/06/sandwich-de-milanesa.jpg",
+      "createdAt": 1721656331564,
+      "modifiedAt": 1721656331564,
+      "id": 7
+    }
+  ],
+  "items": [
+    {
+      "name": "Clasico",
+      "desc": "infusión + 2 Bizcochos o Medialunas saladas/dulces\n",
+      "price": 2200,
+      "imageUrl": "https://images.unsplash.com/photo-1584450149783-8073785c47f9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3& ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "quantity": 1,
+      "categorieId": 1,
+      "modifiedAt": 1721658796129,
+      "id": 1
+    },
+    {
+      "name": "Dulce",
+      "desc": "infusión + Brownie de chocolate",
+      "price": 4500,
+      "imageUrl": "https://images.cookforyourlife.org/wp-content/uploads/2020/06/Dark-Chocolate-Brownies-shutterstock_112430981.jpg",
+      "quantity": 1,
+      "categorieId": 1,
+      "modifiedAt": 1721658797976,
+      "id": 2
+    },
+    {
+      "name": "Clasico Tostado",
+      "desc": "infusión + Tostado de jamon y queso",
+      "price": 6500,
+      "imageUrl": "https://media.diariouno.com.ar/p/92d297a8a5b04498d407c595b48982f0/adjuntos/298/imagenes/008/616/0008616976/receta-tostado-jamon-y-quesojpg.jpg",
+      "quantity": 1,
+      "categorieId": 1,
+      "modifiedAt": 1721658800745,
+      "id": 3
+    },
+    {
+      "name": "Brownie helado",
+      "desc": "Brownie de chocolate con una bocha de helado encima",
+      "price": 4800,
+      "imageUrl": "https://static.americadigital.com/wp-content/uploads/2020/11/americadigital_brownie_helado_5_2020-1140x570.jpg",
+      "quantity": 1,
+      "categorieId": 4,
+      "modifiedAt": 1721658789779,
+      "id": 4
+    },
+    {
+      "name": "Flan",
+      "desc": "Flan con dulce de leche",
+      "price": 2500,
+      "imageUrl": "https://tn.com.ar/resizer/v2/como-hacer-un-flan-con-solo-cinco-ingredientes-en-el-microondas-facil-y-rapido-foto-adobe-stock-J6OQAZOXV5G6XLUKOH5CYSHHAE.png?auth=dcca2ec69c698395be36fd9065f5049ff50427e5cad609bcc47a3e4af95828d0&width=767",
+      "quantity": 1,
+      "categorieId": 4,
+      "modifiedAt": 1721658791405,
+      "id": 5
+    },
+    {
+      "name": "Gaseosa",
+      "desc": "Gaseosa a elección",
+      "price": 1900,
+      "imageUrl": "https://www.fodors.com/wp-content/uploads/2019/03/HERO_Worlds_Best_Soda_Bundaberg_shutterstock_679079920.jpg",
+      "quantity": 1,
+      "categorieId": 5,
+      "modifiedAt": 1721658781538,
+      "id": 6
+    },
+    {
+      "name": "Agua Mineral",
+      "desc": "Agua extraida de la boca de un camello egipcio",
+      "price": 1900,
+      "imageUrl": "https://media.istockphoto.com/id/494501198/es/foto/comprar-botella-de-agua.jpg?s=612x612&w=0&k=20&c=mywqP9dIqR6kVc35d7AlMuuFCgZqlFY_6eQ6-MvMAVA=",
+      "quantity": 1,
+      "categorieId": 5,
+      "modifiedAt": 1721658785834,
+      "id": 7
+    },
+    {
+      "name": "Papas Cheddar",
+      "desc": "Papas fritas con salsa cheddar, panceta ahumada y cebolla de verdeo",
+      "price": 6500,
+      "imageUrl": "https://www.comedera.com/wp-content/uploads/2022/11/papas-fritas-con-queso-cheddar-PG_PFCQCY30320002.jpg",
+      "quantity": 1,
+      "categorieId": 6,
+      "modifiedAt": 1721658759393,
+      "id": 8
+    },
+    {
+      "name": "Bastoncitos",
+      "desc": "Bastones de muzzarella acompañados de rúcula y tomates confitados o concasse",
+      "price": 8500,
+      "imageUrl": "https://www.clarin.com/img/2020/07/21/EVsX1RphU_1200x630__1.jpg",
+      "quantity": 1,
+      "categorieId": 6,
+      "modifiedAt": 1721658771622,
+      "id": 10
+    },
+    {
+      "name": "Lomito Especial",
+      "desc": "Jamón y queso, lechuga y tomate con papas fritas",
+      "price": 8600,
+      "imageUrl": "https://www.circuitogastronomico.com/wp-content/uploads/2023/04/pizzar-lomito-2.jpg",
+      "quantity": 1,
+      "categorieId": 7,
+      "modifiedAt": 1721658753321,
+      "id": 11
+    },
+    {
+      "name": "Hamburguesa",
+      "desc": "Doble carne con cheddar y panceta",
+      "price": null,
+      "imageUrl": "https://assets.unileversolutions.com/recipes-v2/232001.jpg",
+      "quantity": 1,
+      "categorieId": 7,
+      "modifiedAt": 1721658754996,
+      "id": 12
+    }
+  ],
+  "orders": [
+    {
+      "shoppingCart": [
+        {
+          "id": 1,
+          "name": "Clasico",
+          "price": 2200,
+          "imageUrl": "https://images.unsplash.com/photo-1584450149783-8073785c47f9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3& ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "quantity": 1,
+          "desc": "infusión + 2 Bizcochos o Medialunas saladas/dulces\n",
+          "categorieId": 1
+        }
+      ],
+      "totalPrice": 2200,
+      "userId": 4,
+      "createdAt": 1721171830376,
+      "modifiedAt": 1721171830376,
+      "id": 1
+    },
+    {
+      "shoppingCart": [
+        {
+          "id": 1,
+          "name": "Clasico",
+          "price": 2200,
+          "imageUrl": "https://images.unsplash.com/photo-1584450149783-8073785c47f9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3& ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "quantity": 1,
+          "desc": "infusión + 2 Bizcochos o Medialunas saladas/dulces\n",
+          "categorieId": 1
+        }
+      ],
+      "totalPrice": 2200,
+      "userId": 4,
+      "createdAt": 1721171929782,
+      "modifiedAt": 1721171929782,
+      "id": 3
+    },
+    {
+      "shoppingCart": [
+        {
+          "name": "Bastoncitos",
+          "desc": "Bastones de muzzarella acompañados de rúcula y tomates confitados o concasse",
+          "price": 8500,
+          "imageUrl": "https://www.clarin.com/img/2020/07/21/EVsX1RphU_1200x630__1.jpg",
+          "quantity": 5,
+          "categorieId": 6,
+          "modifiedAt": 1721658771622,
+          "id": 10
+        },
+        {
+          "name": "Papas Cheddar",
+          "desc": "Papas fritas con salsa cheddar, panceta ahumada y cebolla de verdeo",
+          "price": 6500,
+          "imageUrl": "https://www.comedera.com/wp-content/uploads/2022/11/papas-fritas-con-queso-cheddar-PG_PFCQCY30320002.jpg",
+          "quantity": 3,
+          "categorieId": 6,
+          "modifiedAt": 1721658759393,
+          "id": 8
+        },
+        {
+          "name": "Brownie helado",
+          "desc": "Brownie de chocolate con una bocha de helado encima",
+          "price": 4800,
+          "imageUrl": "https://static.americadigital.com/wp-content/uploads/2020/11/americadigital_brownie_helado_5_2020-1140x570.jpg",
+          "quantity": 4,
+          "categorieId": 4,
+          "modifiedAt": 1721658789779,
+          "id": 4
+        },
+        {
+          "name": "Gaseosa",
+          "desc": "Gaseosa a elección",
+          "price": 1900,
+          "imageUrl": "https://www.fodors.com/wp-content/uploads/2019/03/HERO_Worlds_Best_Soda_Bundaberg_shutterstock_679079920.jpg",
+          "quantity": 6,
+          "categorieId": 5,
+          "createdAt": 1721657647299,
+          "modifiedAt": 1721657647299,
+          "id": 6
+        },
+        {
+          "name": "Agua Mineral",
+          "desc": "Agua extraida de la boca de un camello egipcio",
+          "price": 1900,
+          "imageUrl": "https://media.istockphoto.com/id/494501198/es/foto/comprar-botella-de-agua.jpg?s=612x612&w=0&k=20&c=mywqP9dIqR6kVc35d7AlMuuFCgZqlFY_6eQ6-MvMAVA=",
+          "quantity": 4,
+          "categorieId": 5,
+          "createdAt": 1721657745860,
+          "modifiedAt": 1721657745860,
+          "id": 7
+        },
+        {
+          "name": "Flan",
+          "desc": "Flan con dulce de leche",
+          "price": 2500,
+          "imageUrl": "https://tn.com.ar/resizer/v2/como-hacer-un-flan-con-solo-cinco-ingredientes-en-el-microondas-facil-y-rapido-foto-adobe-stock-J6OQAZOXV5G6XLUKOH5CYSHHAE.png?auth=dcca2ec69c698395be36fd9065f5049ff50427e5cad609bcc47a3e4af95828d0&width=767",
+          "quantity": 7,
+          "categorieId": 4,
+          "createdAt": 1721657325063,
+          "modifiedAt": 1721657325063,
+          "id": 5
+        }
+      ],
+      "totalPrice": 117700,
+      "userId": 2,
+      "createdAt": 1721658890988,
+      "modifiedAt": 1721658890988,
+      "id": 4
+    },
+    {
+      "shoppingCart": [
+        {
+          "name": "Papas Cheddar",
+          "desc": "Papas fritas con salsa cheddar, panceta ahumada y cebolla de verdeo",
+          "price": 6500,
+          "imageUrl": "https://www.comedera.com/wp-content/uploads/2022/11/papas-fritas-con-queso-cheddar-PG_PFCQCY30320002.jpg",
+          "quantity": 4,
+          "categorieId": 6,
+          "modifiedAt": 1721658759393,
+          "id": 8
+        }
+      ],
+      "totalPrice": 26000,
+      "userId": 2,
+      "createdAt": 1721658965421,
+      "modifiedAt": 1721658965421,
+      "id": 5
+    }
+  ]
+}
